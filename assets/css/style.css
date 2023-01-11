@@ -1,3 +1,85 @@
 * {
-    background-color: aqua;
+    font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --bright: #FF3F60;
+    --deep: #640B0B;
+    --dark: #39191C;
+    --light: #FEF4D7;
+    --background: #FFF0F0;
+}
+
+body {
+    background: var(--background);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-height: 20vh;
+    padding: 10px;
+    background: var(--bright);
+}
+
+header img {
+    margin-left: 15px;
+    height: 70px;
+    width: 70px;
+}
+
+header h1, form, nav{
+    margin: 30px;
+}
+
+header a {
+   margin: 10px;
+}
+
+input {
+    max-width: 80%;
+    width: 600px;
+    padding: 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 var(--deep);
+    transition: 0.4s;
+}
+
+input:hover {
+    box-shadow: 0 0 20px 0 var(--deep);
+}
+
+button {
+    background: var(--light);
+    font-size: 15px;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    transition: 0.4s
+}
+
+button:hover {
+    background: var(--deep);
+    color: var(--background);
+}
+
+main {
+    max-height: 90%;
+}
+
+footer {
+    background: var(--background);
+    max-height: 10vh;
+    size: 15px;
+    text-align: center;
+}
+
+.hide {
+    display: hidden;
 }
