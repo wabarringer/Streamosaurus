@@ -45,22 +45,6 @@ function nameSearch(event) {
         "/watch/providers?api_key=" +
         APIKeyTMDB;
       console.log(requestProvider);
-      fetch(requestProvider)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-          var streamProvider = data.results.US.flatrate[0];
-          console.log(streamProvider);
-          // Would need to have elements for each streaming service we want to list, then create a for loop (var = i; i < data.results.US.flatrate.length; i++) then create an if statement
-
-          // for (let i = 0; i < data.results.US.flatrate.length; i++) {
-          //   if (data.results.US.flatrate[i] === streamingElement) {
-          //   }
-
-          }
-        });
     });
 }
 goBtn.on("click", nameSearch);
@@ -84,17 +68,20 @@ gettrendingAPI();
 
 //Fetches movie by ID to see watch providers ---------------------------------------------------
 function watchproviders() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestprovider =
-    "https://api.themoviedb.org/3/movie/12/watch/providers?api_key=" +
-    APIKeyTMDB;
-  fetch(requestprovider)
+  fetch(requestProvider)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
+      var streamProvider = data.results.US.flatrate[0];
+      console.log(streamProvider);
+      // Would need to have elements for each streaming service we want to list, then create a for loop (var = i; i < data.results.US.flatrate.length; i++) then create an if statement
+
+      for (let i = 0; i < data.results.US.flatrate.length; i++) {
+        if (data.results.US.flatrate[i] === streamingElement) {
+        }
+      }
     });
 }
 watchproviders();
