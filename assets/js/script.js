@@ -1,5 +1,6 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
 // var APIKeyShowtimes =
+var goBtn = $(".go-button");
 
 function getAPI() {
   var requestURL = "https://api.themoviedb.org/3/movie/76341?api_key="+APIKeyTMDB;
@@ -16,19 +17,23 @@ getAPI()
 
 //Fetch movie searching by name ------------------------------------------------------------------
 function nameSearch(event) {
+  event.preventDefault();
   var Searchname = event.currentTarget
-  var Inputtext = $(Searchname).siblings('#movie-input') //the elemntID of the movie text input
+  console.log(event.currentTarget)
+  var Inputtext = $(Searchname).siblings('input') //the elemntID of the movie text input
   var nametextsave = Inputtext.val();
   //for multiple words, must format Name+name in query
+  console.log(nametextsave);
   fetch ("https://api.themoviedb.org/3/search/movie?api_key="+APIKeyTMDB+"&query="+nametextsave)
 .then (function(response){
   return response.json()
 })
 .then (function(data){
   console.log(data)
-
+  
   })
 }
+goBtn.on('click', nameSearch)
 
 //Fetch Trending Movies or tv -----------------------------------------------------------------
 
@@ -41,6 +46,7 @@ function gettrendingAPI(){
     })
     .then(function (data) {
       console.log(data);
+      var top5 = data.results
     }); //returns 20 pages; could do results 1-5
 }
 gettrendingAPI()
@@ -49,7 +55,7 @@ gettrendingAPI()
 function watchproviders () {
   //get movie id from movie data
   // var movieID = storedID
-  var requestprovider ="https://api.themoviedb.org/3/movie/"+movieID+"/watch/providers?api_key="+APIKeyTMDB;
+  var requestprovider ="https://api.themoviedb.org/3/movie/12/watch/providers?api_key="+APIKeyTMDB;
   fetch(requestprovider)
     .then(function (response) {
       return response.json();
@@ -59,6 +65,18 @@ function watchproviders () {
 })
 }
 watchproviders()
+
+//Fetch Recent movies for movie list on front page-----------------------------------------------
+function recentmovies() {
+  var requestrecent = "https://api.themoviedb.org/3/movie/latest?api_key="+APIKeyTMDB+"&language=en-US";
+  fetch(requestprovider)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+})
+}
 
 function moviereviews () {
   //get movie id from movie data
