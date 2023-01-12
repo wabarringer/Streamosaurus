@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
-
-    <!--materialize link messed up my styling idk why will fix tomorrow-->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
     <link rel="icon" type="image/png" href="./assets/images/dino.png">
 
@@ -24,7 +23,7 @@
         <h1>Streamosaurus</h1>
         <form>
             <input id="input" type="text" placeholder="Search your favorite movie..." name="search">
-            <button class="go-button" type="submit">Go</button>
+            <button type="submit">Go</button>
         </form>
         <nav class="nav-links">
             <a href="">Trending</a>
@@ -40,31 +39,48 @@
         <section class="main-display">
 
             <div class="main-card">
-                <h1 trending>Trending</h1>
+                <h1 class="trending">Trending</h1>
     
                 <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#two!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#three!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#four!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#five!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
+                    <a class="carousel-item" href="#one!">
+                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310" width="300px" height="500px"></a>
+                    <a class="carousel-item" href="#two!">
+                        <img src="https://i0.wp.com/batman-news.com/wp-content/uploads/2022/01/The-Batman-2022-Movie-Poster-01.jpeg?fit=2764%2C4096&quality=80&strip=info&ssl=1" width="300px" height="500px"></a>
+                    <a class="carousel-item" href="#three!">
+                        <img src="https://m.media-amazon.com/images/I/71Lvqoov42L.jpg" width="300px" height="500px"></a>
+                    <a class="carousel-item" href="#four!">
+                        <img src="./assets/images/dino.png" width="300px" height="500px"></a>
+                    <a class="carousel-item" href="#five!">
+                        <img src="./assets/images/dino.png" width="300px" height="500px"></a>
                   </div>
             </div>
 
-
-            <div class="recent-movies-card">
-                <h2>Recent Movies</h2>
-                <ul>
-                    <!--Insert top 5 recently released movies through js-->
-                </ul>
+            <div class="section-2-cards">
+                <div class="recent-movies-card">
+                    <h2>Recent Movies</h2>
+                    <ul>
+                        <li>Avatar 2</li>
+                        <li>Puss in Boots: The Last Wish</li>
+                        <li>Megan</li>
+                        <li>Everything Everywhere All at Once</li>
+                        <li>Glass Onion: A Knives Out Mystery</li>
+                        <!--Insert top 5 recently released movies through js-->
+                    </ul>
+                </div>
+    
+                <div class="recent-tv-card">
+                    <h2>Recent TV Shows</h2>
+                    <ul class="tv-list">
+                        <li>The Walking Dead</li>
+                        <li>Wednesday</li>                        
+                        <li>Grey's Anatomy</li>
+                        <li>House of the Dragon</li>
+                        <li>Yellowstone</li>
+                        <!--Insert top 5 recently released/updated shows through js-->
+                    </ul>
+                </div>
             </div>
 
-            <div class="recent-tv-card">
-                <h2>Recent TV Shows</h2>
-                <ul class="tv-list">
-                    <!--Insert top 5 recently released/updated shows through js-->
-                </ul>
-            </div>
         </section>
 
 
@@ -87,12 +103,23 @@
             </div>
 
         </section>
+
+        <!----------movies nav tab------->
+        <section class="movies-nav hide">
+
+        </section>
+
+        <!---------tv shows nav tab---------->
+        <section class="tv-nav hide">
+            
+        </section>
+
     </main>
     
     
     <!----------------------------------------footer-------------------------------------------------------->
     <footer class="footer">
-                © 2023 Copyright Team 7
+                © 2023 Copyright <strong>UW Team 7</strong>
     </footer>
     
 

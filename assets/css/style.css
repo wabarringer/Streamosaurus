@@ -1,3 +1,5 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 * {
     font-family: 'Titillium Web', sans-serif;
     box-sizing: border-box;
@@ -21,9 +23,14 @@ header {
     display: flex;
     align-items: center;
     overflow: hidden;
-    max-height: 20vh;
+    height: 20vh;
     padding: 10px;
     background: var(--bright);
+}
+
+h1 {
+    font-size: 40px;
+    color: var(--dark);
 }
 
 header img {
@@ -36,21 +43,31 @@ header h1, form, nav{
     margin: 30px;
 }
 
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 header a {
     text-decoration: none;
+    color: var(--light);
     margin: 10px;
-    padding: 5px;
-    border-radius: 12px;
-    background: var(--light);
-    box-shadow: 0 0 10px 0 var(--deep);
+    padding: 7px;
     transition: 0.4s;
+    border-radius: 25px;
 }
 
 header a:hover {
-    box-shadow: 0 0 20px 0 var(--deep);
+    background: var(--deep);
+    color: var(--background);
 }
 
-input {
+header form {
+    display: flex;
+    flex-direction: row;
+}
+
+header input {
     max-width: 80%;
     width: 600px;
     padding: 15px;
@@ -65,7 +82,7 @@ input:hover {
     box-shadow: 0 0 20px 0 var(--deep);
 }
 
-button {
+header button {
     background: var(--light);
     font-size: 15px;
     border: none;
@@ -79,17 +96,69 @@ button:hover {
     color: var(--background);
 }
 
+/* __________main section __________*/
+
+
 main {
-    max-height: 90%;
+    height: 80vh;
+    display
+}
+
+.trending {
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px;
+    margin-right: 100px;
+    background: var(--bright);
+}
+
+.carousel {
+    min-height: 60%;
+}
+
+.main-card,
+.section-2-cards {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 40px;
+    border-bottom: 2px solid var(--deep);
+}
+
+.recent-movies-card,
+.recent-tv-card {
+    background: var(--bright);
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: var(--dark);
+    margin: 20px;
+    display: flex;
+    min-width: 40%;
+    flex-direction: column;
 }
 
 footer {
     background: var(--background);
+    padding: 0;
     max-height: 10vh;
     size: 15px;
     text-align: center;
+    background-color: var(--background);
 }
 
 .hide {
     display: hidden;
 }
+
+@media screen and (max-width: 700px) {
+    header a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
