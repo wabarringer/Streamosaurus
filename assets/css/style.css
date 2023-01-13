@@ -235,13 +235,13 @@ footer {
     
 }
 
-<<<<<<< HEAD
 #message {
     background-color: #FEF4D7;
     font-weight: bold;
     position: absolute;
     margin: 10px;
-=======
+}
+
 @media screen and (max-width: 700px) {
 
     header {
@@ -253,5 +253,4 @@ footer {
       text-align: left;
     }
 
->>>>>>> dev
 }
