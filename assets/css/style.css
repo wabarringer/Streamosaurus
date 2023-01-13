@@ -28,6 +28,15 @@ header {
     min-height: 20vh;
     padding: 10px;
     background: var(--bright);
+    flex-direction: column;
+    justify-content: space-around;
+    justify-content: center;
+}
+
+.header-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 h1 {
@@ -36,13 +45,8 @@ h1 {
 }
 
 header img {
-    margin-left: 15px;
     max-height: 70px;
     max-width: 70px;
-}
-
-header h1, form, nav{
-    margin: 30px;
 }
 
 .nav-links {
@@ -50,54 +54,66 @@ header h1, form, nav{
     flex-wrap: wrap;
 }
 
-header a {
-    text-decoration: none;
+header button {
     color: var(--light);
     margin: 10px;
     padding: 7px;
     transition: 0.4s;
     border-radius: 25px;
+    font-size: 15px;
     font-weight: bolder;
+    border: none;
+    background: none;
 }
 
-header a:hover {
+header button:hover {
     background: var(--deep);
     color: var(--background);
 }
 
-header form {
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 1;
+header .form {
+    width: 40%;
 }
 
-header input {
-    max-width: 600px;
+
+header input[type=text] {
     padding: 15px;
     font-size: 15px;
     border: none;
     border-radius: 20px;
     box-shadow: 0 0 8px 0 var(--deep);
     transition: 0.4s;
+    width: 100%;
+    position: relative;
+    padding-right: 50px;
 }
 
-input:hover {
+input[type=text]:hover {
     box-shadow: 0 0 20px 0 var(--deep);
 }
 
-header button {
+header input[type=submit] {
     background: var(--light);
     font-size: 15px;
     border: none;
     padding: 15px;
-    border-radius: 40px;
-    transition: 0.4s
+    border-radius: 20px;
+    transition: 0.4s;
+    float: right;
+    position: absolute;
+    margin-left: -50px;
 }
 
-button:hover {
+header input[type=submit]:hover {
     background: var(--deep);
     color: var(--background);
 }
+
+row:after {
+    display: table;
+    clear: both;
+}
+
 
 /* __________main section __________*/
 
@@ -106,15 +122,15 @@ button:hover {
     padding: 30px;
     border-radius: 20px;
     margin: 30px;
-    margin-right: 100px;
     background: var(--bright);
+    max-width: 50%;
+    position: relative;
 }
 
 
 
-
 .carousel {
-    max-width: 1000px;
+    max-width: 800px;
     position: relative;
     margin: auto;
 }
@@ -130,7 +146,7 @@ button:hover {
     width: auto;
     margin-top: -22px;
     padding: 16px;
-    color: var(-deep);
+    color: var(--deep);
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
@@ -144,7 +160,7 @@ button:hover {
 }
 
 .prev:hover, .next:hover {
-    background-color: #39191c54;
+    background-color: #f3b2b954;
 }
 
 .text {
@@ -165,7 +181,7 @@ button:hover {
     top: 0;
   }
 
-  .dot {
+.dot {
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -189,10 +205,6 @@ button:hover {
     from {opacity: .4}
     to {opacity: 1}
   }
-
-
-
-
 
 .main-card,
 .section-2-cards {
@@ -231,8 +243,7 @@ footer {
 }
 
 .hide {
-    display: hidden;
-    
+    display: none;   
 }
 
 #message {
@@ -247,11 +258,6 @@ footer {
 
     header {
         display: block;
-    }
-    header a {
-      float: none;
-      display: block;
-      text-align: left;
     }
 
 }
