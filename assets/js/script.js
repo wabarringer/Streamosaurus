@@ -22,12 +22,6 @@ getAPI();
 function nameSearch(event) {
   event.preventDefault();
 
-  // TODO: hide main display and show search page display
-  var mainDisplay = $(".main-display");
-  var searchedDisplay = $(".searched-display");
-  mainDisplay.addClass("hide");
-  searchedDisplay.removeClass("hide");
-
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
@@ -60,33 +54,39 @@ function nameSearch(event) {
         .then(function (data) {
           var message = $("#message");
           if (!data.results.US) {
-            console.log("Not available in the US");
+            // --------- create message text on interval timer --------------------------------------------
             message.text("Not available in the US");
-            // TODO: create message text on interval timer
             setTimeout(function () {
               message.text("");
             }, "1000");
+            // --------------------------------------------------------------------------------------------
           } else if (data.results.US.flatrate) {
             for (let i = 0; i < data.results.US.flatrate.length; i++) {
               var streamProvider = data.results.US.flatrate[i];
-              console.log(streamProvider);
-              console.log(streamProvider.provider_name);
+              // console.log(streamProvider);
+              // console.log(streamProvider.provider_name);
+              // ----------------- Append streaming provider name to HTML ---------------------------------
               var providerList = $("#provider-list");
               var providerIcon = $("<li>");
               providerIcon.text(streamProvider.provider_name);
               providerList.append(providerIcon);
+              // -----------------------------------------------------------------------------------------
+              // -------hide main display and show search page display -----------------------------------
+              var mainDisplay = $(".main-display");
+              var searchedDisplay = $(".searched-display");
+              mainDisplay.addClass("hide");
+              searchedDisplay.removeClass("hide");
+              // -----------------------------------------------------------------------------------------
             }
           } else {
-            console.log("Not available on streaming");
+            // TODO: Give option to search for showtimes
+            // ------- create message text on interval timer ---------------------------------------------
             message.text("Not available on streaming");
-            // DONE: create message text on interval timer
             setTimeout(function () {
               message.text("");
             }, "1000");
-            // DONE: create message text on interval timer
           }
-          // TODO: list all available streaming providers
-          // TODO: figure out how to use the jpeg path provided inside the API
+          // ---------------------------------------------------------------------------------------------
         });
     });
 }
