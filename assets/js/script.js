@@ -23,13 +23,12 @@ function nameSearch(event) {
   event.preventDefault();
   // TODO: hide main display and show search page display
   var mainDisplay = $(".main-display");
-  mainDisplay.addClass(".hide");
+  mainDisplay.addClass("hide");
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("input"); //the elemntID of the movie text input
   var nametextsave = Inputtext.val();
 
-  //for multiple words, must format Name+name in query
   console.log(nametextsave);
   fetch(
     "https://api.themoviedb.org/3/search/movie?api_key=" +
@@ -42,23 +41,19 @@ function nameSearch(event) {
     })
     .then(function (data) {
       console.log(data);
-      // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID)
+      // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
       var storedID = data.results[0].id;
-      // console.log(storedID);
       var requestProvider =
         "https://api.themoviedb.org/3/movie/" +
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
-      // console.log(requestProvider);
       fetch(requestProvider)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          // console.log(data);
-
           if (!data.results.US) {
             console.log("Not available in the US");
             $("#message").text("Not available in the US");
