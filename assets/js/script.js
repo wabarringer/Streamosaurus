@@ -235,16 +235,41 @@ fetch(theatermovies)
   return response.json();
 })
 .then(function (data){
-  console.log(data);
-  console.log(data.results[0].title)
-  for (let i = 0; i < data.results.length; i++) {
+  // console.log(data);
+  // console.log(data.results[0].title)
+  for (let i = 0; i < 8; i++) {
     var playingmovies = data.results[i].title;
-    console.log(playingmovies);
-    var playingnow = $("")
+    // console.log(playingmovies);
+    var playingnow = $("#in-theaters");
+    var intheatersEl = $("<li>");
+    intheatersEl.text(playingmovies);
+    playingnow.append(intheatersEl);
   }
 })
 }
 theatermovies();
+
+//-----------------TV List---------------------------
+function playingshows() {
+  var showsplaying = "https://api.themoviedb.org/3/tv/airing_today?api_key="+APIKeyTMDB+"&language=en-US&page=1"
+  fetch(showsplaying)
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    console.log(data)
+    console.log(data.results[0].name)
+    for (let i = 0; i < 8; i++) {
+      var playingshows = data.results[i].name;
+      console.log(playingshows);
+      var tvplayingnow = $("#in-tv");
+      var tvplayingEl = $("<li>");
+      tvplayingEl.text(playingshows);
+      tvplayingnow.append(tvplayingEl);
+    }
+  })
+}
+playingshows();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
