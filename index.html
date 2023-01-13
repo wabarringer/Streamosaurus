@@ -217,32 +217,47 @@
 
     <!----------------------------------------footer-------------------------------------------------------->
     <footer class="footer">© 2023 Copyright <strong>UW Team 7</strong></footer>
+   
+    <!-- ----------------------modal content---------------------------------- -->
     <div id="modal-movie" class="modal">
       <div class="modal-background"></div>
     
-      <div class="modal-content">
-        <div class="box">
-          <p>Top Rated Movies:</p>
-          <ul>
-            
-          </ul>
-        </div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Top Rated Movies:</p>
+          <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <ul id="top-movie-list">
+              
+            </ul>
+          </section>
+          <footer class="modal-card-foot">
+          </footer>
+          </div>
       </div>
-    
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
+
     <div id="modal-TV" class="modal">
       <div class="modal-background"></div>
-    
-      <div class="modal-content">
-        <div class="box">
-          <h2>Top Rated Shows:</h2>
-          <!-- Your content -->
-        </div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Top Rated Shows:</p>
+          <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <ul id="top-tv-list">
+              
+            </ul>
+          </section>
+          <footer class="modal-card-foot">
+          </footer>
+          </div>
       </div>
-    
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
