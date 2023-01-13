@@ -66,7 +66,7 @@ header button, a {
     background: none;
 }
 
-header button:hover {
+header button:hover, a:hover{
     background: var(--deep);
     color: var(--background);
 }
@@ -236,7 +236,27 @@ row:after {
 
 /*---------------searched section-----------------*/
 
+.main-card-hidden,
+.lower-cards {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    position: relative;
+}
 
+.poster {
+    background: var(--bright);
+    padding: 20px;
+    max-width: 450px;
+}
+
+.stats-card {
+    background: var(--bright);
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.cast-card h2
 
 footer {
     padding: 0;
