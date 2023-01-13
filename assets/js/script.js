@@ -2,7 +2,9 @@ var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
 var APIKeyMG = "	gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
 var goBtn = $(".go-button");
 
-function getAPI() {
+//api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
+
+https: function getAPI() {
   var requestURL =
     "https://api.themoviedb.org/3/movie/76341?api_key=" + APIKeyTMDB;
 
@@ -37,14 +39,35 @@ function nameSearch(event) {
     })
     .then(function (data) {
       console.log(data);
+      // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
       var storedID = data.results[0].id;
-      console.log(storedID);
+      // console.log(storedID);
       var requestProvider =
         "https://api.themoviedb.org/3/movie/" +
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
-      console.log(requestProvider);
+      // console.log(requestProvider);
+      fetch(requestProvider)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // console.log(data);
+          if (!data.results.US) {
+            console.log("Not available in the US");
+          } else if (data.results.US.flatrate) {
+            for (let i = 0; i < data.results.US.flatrate.length; i++) {
+              var streamProvider = data.results.US.flatrate[i];
+              console.log(streamProvider);
+              console.log(streamProvider.provider_name);
+            }
+          } else {
+            console.log("Not available on streaming");
+          }
+          // TODO: list all available streaming providers
+          // TODO: figure out how to use the jpeg path provided inside the API
+        });
     });
 }
 goBtn.on("click", nameSearch);
@@ -68,20 +91,17 @@ gettrendingAPI();
 
 //Fetches movie by ID to see watch providers ---------------------------------------------------
 function watchproviders() {
-  fetch(requestProvider)
+  //get movie id from movie data
+  // var movieID = storedID
+  var requestprovider =
+    "https://api.themoviedb.org/3/movie/12/watch/providers?api_key=" +
+    APIKeyTMDB;
+  fetch(requestprovider)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
-      var streamProvider = data.results.US.flatrate[0];
-      console.log(streamProvider);
-      // Would need to have elements for each streaming service we want to list, then create a for loop (var = i; i < data.results.US.flatrate.length; i++) then create an if statement
-
-      for (let i = 0; i < data.results.US.flatrate.length; i++) {
-        if (data.results.US.flatrate[i] === streamingElement) {
-        }
-      }
     });
 }
 watchproviders();
