@@ -22,20 +22,14 @@
         <img src="./assets/images/dino.png">
         <h1>Streamosaurus</h1>
         <form>
-<<<<<<< HEAD
             <input id="input" type="text" placeholder="Search your favorite movie..." name="search">
             <button type="submit">Go</button>
-=======
-            <input id="movieInput" type="text" placeholder="Search your favorite movie..." name="search">
-            <button class="go-button" type="submit">Go</button>
->>>>>>> dev
         </form>
-        <nav class="nav-links">
-            <a href="">Trending</a>
-            <a href="">Movies</a>
-            <a href="">Tv Shows</a>
-            <a href="">New Releases</a>
-        </nav>
+        <div class="nav-links">
+            <a class="movies links" href="">Movies</a>
+            <a class="tv-shows links" href="">Tv Shows</a>
+            <a href="new-releases links">New Releases</a>
+        </div>
     </header>
 
     <main>
@@ -47,17 +41,42 @@
                 <h1 class="trending">Trending</h1>
     
                 <div class="carousel">
-                    <a class="carousel-item" href="#one!">
-                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310" width="300px" height="500px"></a>
-                    <a class="carousel-item" href="#two!">
-                        <img src="https://i0.wp.com/batman-news.com/wp-content/uploads/2022/01/The-Batman-2022-Movie-Poster-01.jpeg?fit=2764%2C4096&quality=80&strip=info&ssl=1" width="300px" height="500px"></a>
-                    <a class="carousel-item" href="#three!">
-                        <img src="https://m.media-amazon.com/images/I/71Lvqoov42L.jpg" width="300px" height="500px"></a>
-                    <a class="carousel-item" href="#four!">
-                        <img src="./assets/images/dino.png" width="300px" height="500px"></a>
-                    <a class="carousel-item" href="#five!">
-                        <img src="./assets/images/dino.png" width="300px" height="500px"></a>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 4</div>
+                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35220/images-w1400.jpeg?1653564309" style="width:80%">
+                        <div class="caption"></div> 
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 4</div>
+                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35232/images-w1400.jpg?1653567601" style="width:80%">
+                        <div class="caption"></div> 
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">3 / 4</div>
+                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310" style="width:80%">
+                        <div class="caption"></div> 
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">4 / 4</div>
+                        <img src="https://assets.mubicdn.net/images/notebook/post_images/35224/images-w1400.jpeg?1653564311" style="width:80%">
+                        <div class="caption"></div> 
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>                   
+                    <br>
+                  <div style="text-align:center">
+                      <span class="dot" onclick="currentSlide(1)"></span>
+                      <span class="dot" onclick="currentSlide(2)"></span>
+                      <span class="dot" onclick="currentSlide(3)"></span>
+                      <span class="dot" onclick="currentSlide(4)"></span>
                   </div>
+                  </div>
+                  
             </div>
 
             <div class="section-2-cards">
@@ -112,10 +131,9 @@
             </div>
 
             <div class="streaming-icons">
-                <h3>Streaming on:</h3>
+                <p>Streaming on:</p>
                 <!--create <img> with a source with the image id-->
-            </div>s
-
+            </div>
         </section>
 
         <!----------movies nav tab------->
