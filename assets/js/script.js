@@ -178,6 +178,7 @@ function showSlides() {
   setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
 
+//------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
   function openModal($el) {
