@@ -31,18 +31,24 @@
   <!----------------------------header--------------------------------------------->
   <body>
     <header>
-      <img src="./assets/images/dino.png" />
-      <h1>Streamosaurus</h1>
-      <form>
-        <input
-          id="input"
-          type="text"
-          placeholder="Search your favorite movie..."
-          name="search"
-        />
-        <button type="submit" id="go-button">Go</button><br />
-        <label id="message"></label>
-      </form>
+        <div class="header-container">
+            <img src="./assets/images/dino.png" />
+            <h1>Streamosaurus</h1>
+        </div>
+      <div class="form">
+          <form>
+            <div class="row">
+                <input
+                  id="input"
+                  type="text"
+                  placeholder="Search your favorite movie..."
+                  name="search"
+                />
+                <input type="submit" id="go-button" value="Go"/><br />
+                <label id="message"></label>
+            </div>
+        </form>
+      </div>
       <div class="nav-links">
         <button class="js-modal-trigger" data-target="modal-movie">
           Movies
@@ -56,28 +62,7 @@
 
     <main>
       <!------------------------main page display------------------------------->
-      <section class="main-display">
-        <div class="main-card">
-          <h1 trending>Trending</h1>
-
-          <div class="carousel">
-            <a class="carousel-item" href="#one!"
-              ><img src="./assets/images/dino.png" width="100px" height="100px"
-            /></a>
-            <a class="carousel-item" href="#two!"
-              ><img src="./assets/images/dino.png" width="100px" height="100px"
-            /></a>
-            <a class="carousel-item" href="#three!"
-              ><img src="./assets/images/dino.png" width="100px" height="100px"
-            /></a>
-            <a class="carousel-item" href="#four!"
-              ><img src="./assets/images/dino.png" width="100px" height="100px"
-            /></a>
-            <a class="carousel-item" href="#five!"
-              ><img src="./assets/images/dino.png" width="100px" height="100px"
-            /></a>
-          </div>
-        </div>
+      <div class="main-display">
 
         <div class="main-card">
           <h1 class="trending">Trending</h1>
@@ -87,7 +72,6 @@
               <div class="numbertext">1 / 4</div>
               <img
                 src="https://assets.mubicdn.net/images/notebook/post_images/35220/images-w1400.jpeg?1653564309"
-                style="width: 80%"
               />
               <div class="caption"></div>
             </div>
@@ -96,7 +80,6 @@
               <div class="numbertext">2 / 4</div>
               <img
                 src="https://assets.mubicdn.net/images/notebook/post_images/35232/images-w1400.jpg?1653567601"
-                style="width: 80%"
               />
               <div class="caption"></div>
             </div>
@@ -104,8 +87,7 @@
             <div class="mySlides fade">
               <div class="numbertext">3 / 4</div>
               <img
-                src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310"
-                style="width: 80%"
+                src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310" 
               />
               <div class="caption"></div>
             </div>
@@ -114,7 +96,6 @@
               <div class="numbertext">4 / 4</div>
               <img
                 src="https://assets.mubicdn.net/images/notebook/post_images/35224/images-w1400.jpeg?1653564311"
-                style="width: 80%"
               />
               <div class="caption"></div>
             </div>
@@ -156,12 +137,6 @@
             </ul>
           </div>
         </div>
-      </section>
-
-      <div class="reviews-card">
-        <ul>
-          <!--insert reviews as list with .createElement-->
-        </ul>
       </div>
 
       <!--------------------------searched page display------------------------->
