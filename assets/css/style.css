@@ -54,7 +54,7 @@ header img {
     flex-wrap: wrap;
 }
 
-header button {
+header button, a {
     color: var(--light);
     margin: 10px;
     padding: 7px;
@@ -234,6 +234,10 @@ row:after {
     flex-direction: column;
 }
 
+/*---------------searched section-----------------*/
+
+
+
 footer {
     padding: 0;
     position:relative;
@@ -251,6 +255,7 @@ footer {
     font-weight: bold;
     position: absolute;
     margin: 10px;
+    border-radius: 10px;
     color: #FEF4D7;
 }
 
@@ -258,6 +263,11 @@ footer {
 
     header {
         display: block;
+    }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
     }
 
 }

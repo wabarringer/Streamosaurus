@@ -56,13 +56,13 @@
         <button class="js-modal-trigger" data-target="modal-TV">
           TV Shows
         </button>
-        <a href="new-releases links">New Releases</a>
+        <a href="#new-releases">New Releases</a>
       </div>
     </header>
 
     <main>
       <!------------------------main page display------------------------------->
-      <div class="main-display">
+      <div class="main-display hide">
         <div class="main-card">
           <h1 class="trending">Trending</h1>
 
@@ -111,7 +111,7 @@
           </div>
         </div>
 
-        <div class="section-2-cards">
+        <div class="section-2-cards" id="new-releases">
           <div class="recent-movies-card">
             <h2>Recent Movies</h2>
             <ul>
@@ -139,41 +139,74 @@
       </div>
 
       <!--------------------------searched page display------------------------->
-      <section class="hide searched-display">
+      <div class=" searched-display">
         <div class="poster">
-          <img class="poster-img" />
-        </div>
+            <img
+              src="https://assets.mubicdn.net/images/notebook/post_images/35220/images-w1400.jpeg?1653564309" width="30%"
+            />
+            <div class="caption"></div>
+          </div>
 
         <div class="stats-card">
-          <ul>
-            <!--insert stats as list items with the name of the stat before ex.(x.textContent = "Cast: John Doe, Jane Doe, Johnny Does") use .createElement-->
-          </ul>
+            <div class="description-card">
+                <p class="description"></p>
+            </div>
+            <div class="cast">
+                <ul>
+                    <li>Norman Reedus</li>
+                    <li>Andrew Lincoln</li>
+                    <li>Chandler Riggs</li>
+                    <li>Lauren Cohen</li>
+                    <li>Steven Yeun</li>
+                    <li>Melissa McBride</li>
+                    <li>Danai Gurira</li>
+                    <li>Jeffrey Dean Morgan</li>
+                    <!--list 8 cast members-->
+                </ul>
+            </div>
+
+            <div class="rating-card">
+                <p id="rating">R</p>
+            </div>
+
+
         </div>
 
-        <div class="reviews-card">
-          <ul>
-            <!--insert reviews as list with .createElement-->
-          </ul>
-        </div>
+        <!--reviews will be caption on poster-->
 
-        <div class="showtimes">
-          <!--add in form, button and ul div for showtimes after zipcode input-->
+        <div class="lower-cards">
+            <div class="showtimes-card">
+                <div class="form">
+                    <form>
+                      <div class="row">
+                        <input
+                          id="input"
+                          type="text"
+                          placeholder="Enter ZIP code..."
+                          name="search"
+                        />
+                        <input type="submit" id="go-button" value="Go" />
+                      </div>
+                    </form>
+                  </div>
+              <!--add in form, button and ul div for showtimes after zipcode input-->
+            </div>
+    
+            <div class="streaming">
+              <p>Streaming on:</p>
+              <ul id="provider-list">
+                <!-- insert streaming icons -->
+              </ul>
+              <!--create <img> with a source with the image id-->
+            </div>
         </div>
-
-        <div class="streaming">
-          <p>Streaming on:</p>
-          <ul id="provider-list">
-            <!-- insert streaming icons -->
-          </ul>
-          <!--create <img> with a source with the image id-->
-        </div>
-      </section>
+      </div>
 
       <!----------movies nav tab------->
-      <section class="movies-nav hide"></section>
+      <div class="movies-nav hide"></div>
 
       <!---------tv shows nav tab---------->
-      <section class="tv-nav hide"></section>
+      <div class="tv-nav hide"></div>
     </main>
 
     <!----------------------------------------footer-------------------------------------------------------->
