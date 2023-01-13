@@ -214,11 +214,11 @@ function topshows() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(data.results[0].name);
+      // console.log(data);
+      // console.log(data.results[0].name);
       for (let i = 0; i < data.results.length; i++) {
         var toptvList = data.results[i].name;
-        console.log(toptvList);
+        // console.log(toptvList);
         var toptvListInput = $("#top-tv-list");
         var tvlistEl = $("<li>");
         tvlistEl.text(toptvList);
@@ -227,7 +227,24 @@ function topshows() {
     })
 }
 topshows();
-
+//-----------------displays recent movies---------------------------
+function theatermovies(){
+var theatermovies = "https://api.themoviedb.org/3/movie/now_playing?api_key="+APIKeyTMDB+"&language=en-US";
+fetch(theatermovies)
+.then(function (response){
+  return response.json();
+})
+.then(function (data){
+  console.log(data);
+  console.log(data.results[0].title)
+  for (let i = 0; i < data.results.length; i++) {
+    var playingmovies = data.results[i].title;
+    console.log(playingmovies);
+    var playingnow = $("")
+  }
+})
+}
+theatermovies();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
