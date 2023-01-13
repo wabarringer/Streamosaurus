@@ -106,7 +106,7 @@ function gettrendingAPI() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
       var top5 = data.results;
     }); //returns 20 pages; could do results 1-5
 }
@@ -257,11 +257,11 @@ function playingshows() {
     return response.json();
   })
   .then(function(data){
-    console.log(data)
-    console.log(data.results[0].name)
+    // console.log(data)
+    // console.log(data.results[0].name)
     for (let i = 0; i < 8; i++) {
       var playingshows = data.results[i].name;
-      console.log(playingshows);
+      // console.log(playingshows);
       var tvplayingnow = $("#in-tv");
       var tvplayingEl = $("<li>");
       tvplayingEl.text(playingshows);
@@ -270,6 +270,20 @@ function playingshows() {
   })
 }
 playingshows();
+
+//------------------trending movie images --------------------------------------
+function trendingposter() {
+  var trendingmov = "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
+
+fetch(trendingmov)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+})
+}
+trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
