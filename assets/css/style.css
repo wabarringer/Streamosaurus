@@ -236,10 +236,11 @@ footer {
 }
 
 #message {
-    background-color: #FEF4D7;
+    background-color:#640B0B;
     font-weight: bold;
     position: absolute;
     margin: 10px;
+    color: #FEF4D7;
 }
 
 @media screen and (max-width: 700px) {

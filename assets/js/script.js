@@ -1,6 +1,6 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
 var APIKeyMG = "	gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
-var goBtn = $(".go-button");
+var goBtn = $("#go-button");
 
 //api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
 
@@ -26,7 +26,7 @@ function nameSearch(event) {
   mainDisplay.addClass("hide");
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
-  var Inputtext = $(Searchname).siblings("input"); //the elemntID of the movie text input
+  var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
   var nametextsave = Inputtext.val();
 
   console.log(nametextsave);
@@ -54,12 +54,13 @@ function nameSearch(event) {
           return response.json();
         })
         .then(function (data) {
+          var message = $("#message");
           if (!data.results.US) {
             console.log("Not available in the US");
-            $("#message").text("Not available in the US");
+            message.text("Not available in the US");
             // TODO: create message text on interval timer
             setTimeout(function () {
-              $("#message").text("");
+              message.text("");
             }, "1000");
           } else if (data.results.US.flatrate) {
             for (let i = 0; i < data.results.US.flatrate.length; i++) {
@@ -72,10 +73,10 @@ function nameSearch(event) {
             }
           } else {
             console.log("Not available on streaming");
-            $("#message").text("Not available on streaming");
+            message.text("Not available on streaming");
             // TODO: create message text on interval timer
             setTimeout(function () {
-              $("#message").text("");
+              message.text("");
             }, "1000");
             // TODO: create message text on interval timer
           }
@@ -156,12 +157,6 @@ moviereviews(); //returns reviews by folks on the TMDB site
 //What do do when the movie has multiple results?
 //from movie info available: poster_path, original_language, overview, release_date, vote_average
 
-
-
-
-
-
-
 //-----------------slideshow js-------------------
 let slideIndex = 0;
 showSlides();
@@ -173,9 +168,9 @@ function showSlides() {
     slides[i].style.display = "none";
   }
   slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  slides[slideIndex - 1].style.display = "block";
   setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
-
-
