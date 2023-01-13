@@ -21,9 +21,13 @@ getAPI();
 //Fetch movie searching by name ------------------------------------------------------------------
 function nameSearch(event) {
   event.preventDefault();
+
   // TODO: hide main display and show search page display
   var mainDisplay = $(".main-display");
+  var searchedDisplay = $(".searched-display");
   mainDisplay.addClass("hide");
+  searchedDisplay.removeClass("hide");
+
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
@@ -67,18 +71,19 @@ function nameSearch(event) {
               var streamProvider = data.results.US.flatrate[i];
               console.log(streamProvider);
               console.log(streamProvider.provider_name);
-              var providerList = $("#providerList");
-              var providerIcon = providerList.append("li");
-              providerIcon.source = streamProvider.logo_path;
+              var providerList = $("#provider-list");
+              var providerIcon = $("<li>");
+              providerIcon.text(streamProvider.provider_name);
+              providerList.append(providerIcon);
             }
           } else {
             console.log("Not available on streaming");
             message.text("Not available on streaming");
-            // TODO: create message text on interval timer
+            // DONE: create message text on interval timer
             setTimeout(function () {
               message.text("");
             }, "1000");
-            // TODO: create message text on interval timer
+            // DONE: create message text on interval timer
           }
           // TODO: list all available streaming providers
           // TODO: figure out how to use the jpeg path provided inside the API
