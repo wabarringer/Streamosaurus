@@ -93,3 +93,10 @@ footer {
 .hide {
     display: hidden;
 }
+
+#message {
+    background-color: #FEF4D7;
+    font-weight: bold;
+    position: absolute;
+    margin: 10px;
+}

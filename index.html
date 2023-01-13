@@ -5,106 +5,113 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap"
+      rel="stylesheet"
+    />
 
     <!--materialize link messed up my styling idk why will fix tomorrow-->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 
-    <link rel="icon" type="image/png" href="./assets/images/dino.png">
+    <link rel="icon" type="image/png" href="./assets/images/dino.png" />
 
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Streamosaurus</title>
- 
-</head>
-<!----------------------------header--------------------------------------------->
-<body>
+  </head>
+  <!----------------------------header--------------------------------------------->
+  <body>
     <header>
-        <img src="./assets/images/dino.png">
-        <h1>Streamosaurus</h1>
-        <form>
-            <input id="movieInput" type="text" placeholder="Search your favorite movie..." name="search">
-            <button class="go-button" type="submit">Go</button>
-        </form>
-        <nav class="nav-links">
-            <a href="">Trending</a>
-            <a href="">Movies</a>
-            <a href="">Tv Shows</a>
-            <a href="">New Releases</a>
-        </nav>
+      <img src="./assets/images/dino.png" />
+      <h1>Streamosaurus</h1>
+      <form>
+        <input
+          id="movieInput"
+          type="text"
+          placeholder="Search your favorite movie..."
+          name="search"
+        />
+        <button class="go-button" type="submit">Go</button><br />
+        <label id="message"></label>
+      </form>
+      <nav class="nav-links">
+        <a href="">Trending</a>
+        <a href="">Movies</a>
+        <a href="">Tv Shows</a>
+        <a href="">New Releases</a>
+      </nav>
     </header>
 
     <main>
+      <!------------------------main page display------------------------------->
+      <section class="main-display">
+        <div class="main-card">
+          <h1 trending>Trending</h1>
 
-<!------------------------main page display------------------------------->
-        <section class="main-display">
+          <div class="carousel">
+            <a class="carousel-item" href="#one!"
+              ><img src="./assets/images/dino.png" width="100px" height="100px"
+            /></a>
+            <a class="carousel-item" href="#two!"
+              ><img src="./assets/images/dino.png" width="100px" height="100px"
+            /></a>
+            <a class="carousel-item" href="#three!"
+              ><img src="./assets/images/dino.png" width="100px" height="100px"
+            /></a>
+            <a class="carousel-item" href="#four!"
+              ><img src="./assets/images/dino.png" width="100px" height="100px"
+            /></a>
+            <a class="carousel-item" href="#five!"
+              ><img src="./assets/images/dino.png" width="100px" height="100px"
+            /></a>
+          </div>
+        </div>
 
-            <div class="main-card">
-                <h1 trending>Trending</h1>
-    
-                <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#two!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#three!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#four!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                    <a class="carousel-item" href="#five!"><img src="./assets/images/dino.png" width="100px" height="100px"></a>
-                  </div>
-            </div>
+        <div class="recent-movies-card">
+          <h2>Recent Movies</h2>
+          <ul>
+            <!--Insert top 5 recently released movies through js-->
+          </ul>
+        </div>
 
+        <div class="recent-tv-card">
+          <h2>Recent TV Shows</h2>
+          <ul class="tv-list">
+            <!--Insert top 5 recently released/updated shows through js-->
+          </ul>
+        </div>
+      </section>
 
-            <div class="recent-movies-card">
-                <h2>Recent Movies</h2>
-                <ul>
-                    <!--Insert top 5 recently released movies through js-->
-                </ul>
-            </div>
+      <!--------------------------searched page display------------------------->
+      <section class="hide searched-display">
+        <div class="poster">
+          <img class="poster-img" />
+        </div>
 
-            <div class="recent-tv-card">
-                <h2>Recent TV Shows</h2>
-                <ul class="tv-list">
-                    <!--Insert top 5 recently released/updated shows through js-->
-                </ul>
-            </div>
-        </section>
+        <div class="stats-card">
+          <ul>
+            <!--insert stats as list items with the name of the stat before ex.(x.textContent = "Cast: John Doe, Jane Doe, Johnny Does") use .createElement-->
+          </ul>
+        </div>
 
+        <div class="reviews-card">
+          <ul>
+            <!--insert reviews as list with .createElement-->
+          </ul>
+        </div>
 
-<!--------------------------searched page display------------------------->
-        <section class="hide searched-display">
-            <div class="poster">
-                <img class="poster-img">
-            </div>
-
-            <div class="stats-card">
-                <ul>
-                    <!--insert stats as list items with the name of the stat before ex.(x.textContent = "Cast: John Doe, Jane Doe, Johnny Does") use .createElement-->
-                </ul>
-            </div>
-
-            <div class="reviews-card">
-                <ul>
-                    <!--insert reviews as list with .createElement-->
-                </ul>
-            </div>
-
-        </section>
+        <div class="streaming-showtime-card">
+          <ul id="provider-list"></ul>
+        </div>
+      </section>
     </main>
-    
-    
+
     <!----------------------------------------footer-------------------------------------------------------->
-    <footer class="footer">
-                © 2023 Copyright Team 7
-    </footer>
-    
-    
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="./assets/js/script.js"></script>
+    <footer class="footer">© 2023 Copyright Team 7</footer>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
 </html>
-
-
-    
-
-
