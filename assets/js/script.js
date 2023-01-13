@@ -63,13 +63,17 @@ function nameSearch(event) {
           } else if (data.results.US.flatrate) {
             for (let i = 0; i < data.results.US.flatrate.length; i++) {
               var streamProvider = data.results.US.flatrate[i];
-              // console.log(streamProvider);
-              // console.log(streamProvider.provider_name);
+              console.log(streamProvider);
+              console.log(streamProvider.provider_name);
               // ----------------- Append streaming provider name to HTML ---------------------------------
+              // TODO: fix stacking issue by clearing results at start of click event
               var providerList = $("#provider-list");
-              var providerIcon = $("<li>");
-              providerIcon.text(streamProvider.provider_name);
-              providerList.append(providerIcon);
+              var providerName = $("<p>");
+              var iconPath =
+                "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
+              providerName.text(streamProvider.provider_name);
+              providerList.append(iconPath);
+              providerList.append(providerName);
               // -----------------------------------------------------------------------------------------
               // -------hide main display and show search page display -----------------------------------
               var mainDisplay = $(".main-display");
@@ -91,9 +95,6 @@ function nameSearch(event) {
     });
 }
 goBtn.on("click", nameSearch);
-
-
-
 
 //Fetch Trending Movies or tv -----------------------------------------------------------------
 
@@ -184,46 +185,51 @@ function showSlides() {
 }
 
 //------------------JS for Movie and TV Modals-----------------------------------
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $el.classList.add('is-active');
+    $el.classList.add("is-active");
   }
 
   function closeModal($el) {
-    $el.classList.remove('is-active');
+    $el.classList.remove("is-active");
   }
 
   function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
       closeModal($modal);
     });
   }
 
   // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+  (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
+    $trigger.addEventListener("click", () => {
       openModal($target);
     });
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+  (
+    document.querySelectorAll(
+      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+    ) || []
+  ).forEach(($close) => {
+    const $target = $close.closest(".modal");
 
-    $close.addEventListener('click', () => {
+    $close.addEventListener("click", () => {
       closeModal($target);
     });
   });
 
   // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     const e = event || window.event;
 
-    if (e.keyCode === 27) { // Escape key
+    if (e.keyCode === 27) {
+      // Escape key
       closeAllModals();
     }
   });
