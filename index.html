@@ -50,9 +50,13 @@
         </form>
       </div>
       <div class="nav-links">
-        <button class="movies links" href="">Movies</button>
-        <button class="tv-shows links" href="">Tv Shows</button>
-        <button href="new-releases links">New Releases</button>
+        <button class="js-modal-trigger" data-target="modal-movie">
+          Movies
+        </button>
+        <button class="js-modal-trigger" data-target="modal-TV">
+          TV Shows
+        </button>
+        <a href="new-releases links">New Releases</a>
       </div>
     </header>
 
@@ -174,7 +178,32 @@
 
     <!----------------------------------------footer-------------------------------------------------------->
     <footer class="footer">© 2023 Copyright <strong>UW Team 7</strong></footer>
-
+    <div id="modal-movie" class="modal">
+      <div class="modal-background"></div>
+    
+      <div class="modal-content">
+        <div class="box">
+          <p>Top Rated Movies:</p>
+          <ul>
+            
+          </ul>
+        </div>
+      </div>
+    
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <div id="modal-TV" class="modal">
+      <div class="modal-background"></div>
+    
+      <div class="modal-content">
+        <div class="box">
+          <h2>Top Rated Shows:</h2>
+          <!-- Your content -->
+        </div>
+      </div>
+    
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
