@@ -47,6 +47,7 @@ h1 {
 header img {
     max-height: 70px;
     max-width: 70px;
+    padding-bottom: 5px;
 }
 
 .nav-links {
