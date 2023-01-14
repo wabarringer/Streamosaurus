@@ -72,7 +72,7 @@ function nameSearch(event) {
               var iconPath =
                 "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
               providerName.text(streamProvider.provider_name);
-              providerList.append(iconPath);
+              providerList.append($("<img src" + iconPath + ">"));
               providerList.append(providerName);
               // -----------------------------------------------------------------------------------------
               // -------hide main display and show search page display -----------------------------------
@@ -187,7 +187,9 @@ function showSlides() {
 //-------------fetch api for top rated movies button -----------------------------
 function topmovies() {
   var requesttop =
-    "https://api.themoviedb.org/3/movie/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(requesttop)
     .then(function (response) {
       return response.json();
@@ -209,7 +211,9 @@ topmovies();
 //----------------------------
 function topshows() {
   var requesttoptv =
-    "https://api.themoviedb.org/3/tv/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+    "https://api.themoviedb.org/3/tv/top_rated?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(requesttoptv)
     .then(function (response) {
       return response.json();
@@ -225,7 +229,7 @@ function topshows() {
         tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
       }
-    })
+    });
 }
 topshows();
 
