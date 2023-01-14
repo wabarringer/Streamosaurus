@@ -1,0 +1,294 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+* {
+    font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --bright: #FF3F60;
+    --deep: #640B0B;
+    --dark: #39191C;
+    --light: #FEF4D7;
+    --background: #FFF0F0;
+}
+
+body {
+    background: var(--background);
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    min-height: 20vh;
+    padding: 10px;
+    background: var(--bright);
+    flex-direction: column;
+    justify-content: space-around;
+    justify-content: center;
+}
+
+.header-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+h1 {
+    font-size: 40px;
+    color: var(--dark);
+}
+
+header img {
+    max-height: 70px;
+    max-width: 70px;
+    padding-bottom: 5px;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header button, a {
+    color: var(--light);
+    margin: 10px;
+    padding: 7px;
+    transition: 0.4s;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bolder;
+    border: none;
+    background: none;
+}
+
+header button:hover, a:hover{
+    background: var(--deep);
+    color: var(--background);
+}
+
+header .form {
+    width: 40%;
+}
+
+
+header input[type=text] {
+    padding: 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 8px 0 var(--deep);
+    transition: 0.4s;
+    width: 100%;
+    position: relative;
+    padding-right: 50px;
+}
+
+input[type=text]:hover {
+    box-shadow: 0 0 20px 0 var(--deep);
+}
+
+header input[type=submit] {
+    background: var(--light);
+    font-size: 15px;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.4s;
+    float: right;
+    position: absolute;
+    margin-left: -50px;
+}
+
+header input[type=submit]:hover {
+    background: var(--deep);
+    color: var(--background);
+}
+
+row:after {
+    display: table;
+    clear: both;
+}
+
+
+/* __________main section __________*/
+
+
+.trending {
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px;
+    background: var(--bright);
+    max-width: 50%;
+    position: relative;
+}
+
+
+
+.carousel {
+    max-width: 800px;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: var(--deep);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #f3b2b954;
+}
+
+.text {
+    color: var(--deep);
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.numbertext {
+    color: var(--deep);
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+.main-card,
+.section-2-cards {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    position: relative;
+}
+
+.section-2-cards h2 {
+    font-size: 40px;
+    border-bottom: 2px solid var(--deep);
+}
+
+.recent-movies-card,
+.recent-tv-card {
+    background: var(--bright);
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: var(--dark);
+    margin: 20px;
+    display: flex;
+    min-width: 40%;
+    flex-direction: column;
+}
+
+/*---------------searched section-----------------*/
+
+.main-card-hidden,
+.lower-cards {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    position: relative;
+}
+
+.poster {
+    background: var(--bright);
+    padding: 20px;
+    max-width: 450px;
+}
+
+.stats-card {
+    background: var(--bright);
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.cast-card h2
+
+footer {
+    padding: 0;
+    position:relative;
+    bottom: 0;
+    size: 15px;
+    text-align: center;
+}
+
+.hide {
+    display: none;   
+}
+
+#message {
+    background-color:#640B0B;
+    font-weight: bold;
+    position: absolute;
+    margin: 10px;
+    border-radius: 10px;
+    color: #FEF4D7;
+}
+
+@media screen and (max-width: 700px) {
+
+    header {
+        display: block;
+    }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
+    }
+
+}

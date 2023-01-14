@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--materialize link messed up my styling idk why will fix tomorrow-->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+
+    <link rel="icon" type="image/png" href="./assets/images/dino.png" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Streamosaurus</title>
+  </head>
+  <!----------------------------header--------------------------------------------->
+  <body>
+    <header>
+      <div class="header-container">
+        <img src="./assets/images/dino.png" />
+        <h1>Streamosaurus</h1>
+      </div>
+      <div class="form">
+        <form>
+          <div class="row">
+            <input
+              id="input"
+              type="text"
+              placeholder="Search your favorite movie..."
+              name="search"
+            />
+            <input type="submit" id="go-button" value="Go" /><br />
+            <label id="message"></label>
+          </div>
+        </form>
+      </div>
+      <div class="nav-links">
+        <button class="js-modal-trigger" data-target="modal-movie">
+          Movies
+        </button>
+        <button class="js-modal-trigger" data-target="modal-TV">
+          TV Shows
+        </button>
+        <a href="#new-releases">New Releases</a>
+      </div>
+    </header>
+
+    <main>
+      <!------------------------main page display------------------------------->
+      <div class="main-display">
+        <div class="main-card">
+          <h1 class="trending">Trending</h1>
+
+          <div class="carousel">
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 4</div>
+              <img
+                src="https://assets.mubicdn.net/images/notebook/post_images/35220/images-w1400.jpeg?1653564309"
+              />
+              <div class="caption"></div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 4</div>
+              <img
+                src="https://assets.mubicdn.net/images/notebook/post_images/35232/images-w1400.jpg?1653567601"
+              />
+              <div class="caption"></div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 4</div>
+              <img
+                src="https://assets.mubicdn.net/images/notebook/post_images/35223/images-w1400.jpeg?1653564310"
+              />
+              <div class="caption"></div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">4 / 4</div>
+              <img
+                src="https://assets.mubicdn.net/images/notebook/post_images/35224/images-w1400.jpeg?1653564311"
+              />
+              <div class="caption"></div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <br />
+            <div style="text-align: center">
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+              <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-2-cards" id="new-releases">
+          <div class="recent-movies-card">
+            <h2>Recent Movies</h2>
+            <ul>
+              <li>Avatar 2</li>
+              <li>Puss in Boots: The Last Wish</li>
+              <li>Megan</li>
+              <li>Everything Everywhere All at Once</li>
+              <li>Glass Onion: A Knives Out Mystery</li>
+              <!--Insert top 5 recently released movies through js-->
+            </ul>
+          </div>
+
+          <div class="recent-tv-card">
+            <h2>Recent TV Shows</h2>
+            <ul class="tv-list">
+              <li>The Walking Dead</li>
+              <li>Wednesday</li>
+              <li>Grey's Anatomy</li>
+              <li>House of the Dragon</li>
+              <li>Yellowstone</li>
+              <!--Insert top 5 recently released/updated shows through js-->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!--------------------------searched page display------------------------->
+      <div class=" searched-display hide">
+        <div class="main-card-hidden">
+            <div class="poster">
+                <img
+                  src="https://www.defining.co/wp-content/uploads/2022/09/image_24fc0a3c-4653-4ff2-aac1-24012fe42911.jpg"
+                />
+                <div class="caption">Caption</div>
+              </div>
+    
+            <div class="stats-card">
+                <div class="synopsis-card">
+                    <p class="synopsis"></p>
+                </div>
+                <div class="cast-card">
+                    <h2>Cast:</h2>
+                    <ul>
+                        <li>Norman Reedus</li>
+                        <li>Andrew Lincoln</li>
+                        <li>Chandler Riggs</li>
+                        <li>Lauren Cohen</li>
+                        <li>Steven Yeun</li>
+                        <li>Melissa McBride</li>
+                        <li>Danai Gurira</li>
+                        <li>Jeffrey Dean Morgan</li>
+                        <!--list 8 cast members-->
+                    </ul>
+                </div>
+    
+                <div class="rating-card">
+                    <p id="rating">TV-13</p>
+                </div>
+    
+                <div class="box-office-card">
+                    <p id="box-office">$603,108</p>
+                </div>
+    
+            </div>
+        </div>
+
+        <!--reviews will be caption on poster-->
+
+        <div class="upper-cards">
+            <div class="showtimes-card">
+                <div class="form">
+                    <form>
+                      <div class="row">
+                        <input
+                          id="input"
+                          type="text"
+                          placeholder="Enter ZIP code..."
+                          name="search"
+                        />
+                        <input type="submit" id="go-button" value="Go" />
+                      </div>
+                    </form>
+                  </div>
+              <!--add in form, button and ul div for showtimes after zipcode input-->
+            </div>
+    
+            <div class="streaming-card">
+              <p>Streaming on:</p>
+              <ul id="provider-list">
+                <!-- insert streaming icons -->
+              </ul>
+              <!--create <img> with a source with the image id-->
+            </div>
+        </div>
+      </div>
+
+      <!----------movies nav tab------->
+      <div class="movies-nav hide"></div>
+
+      <!---------tv shows nav tab---------->
+      <div class="tv-nav hide"></div>
+    </main>
+
+    <!----------------------------------------footer-------------------------------------------------------->
+    <footer class="footer">© 2023 Copyright <strong>UW Team 7</strong></footer>
+   
+    <!-- ----------------------modal content---------------------------------- -->
+    <div id="modal-movie" class="modal">
+      <div class="modal-background"></div>
+    
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Top Rated Movies:</p>
+          <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <ul id="top-movie-list">
+              
+            </ul>
+          </section>
+          <footer class="modal-card-foot">
+          </footer>
+          </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div id="modal-TV" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Top Rated Shows:</p>
+          <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <ul id="top-tv-list">
+              
+            </ul>
+          </section>
+          <footer class="modal-card-foot">
+          </footer>
+          </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
