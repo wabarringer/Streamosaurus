@@ -1,5 +1,5 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
-var APIKeyMG = "	gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
+var APIKeyMG = "gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
 var goBtn = $("#go-button");
 
 //api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
@@ -47,6 +47,7 @@ function nameSearch(event) {
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
+      console.log(requestProvider);
       fetch(requestProvider)
         .then(function (response) {
           return response.json();
@@ -65,6 +66,7 @@ function nameSearch(event) {
             } else if (data.results.US.flatrate) {
               for (let i = 0; i < data.results.US.flatrate.length; i++) {
                 var streamProvider = data.results.US.flatrate[i];
+                console.log(data.results.US);
                 console.log(streamProvider);
                 console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
@@ -87,12 +89,12 @@ function nameSearch(event) {
                 // -----------------------------------------------------------------------------------------
               }
             } else {
-              // TODO: Give option to search for showtimes
               // ------- create message text on interval timer ---------------------------------------------
               message.text("Not available on streaming");
               setTimeout(function () {
                 message.text("");
               }, "1000");
+              // TODO: Give option to search for showtimes
             }
             // ---------------------------------------------------------------------------------------------
           }
