@@ -281,7 +281,7 @@ theatermovies();
 
 //-----------------TV List---------------------------
 function playingshows() {
-  var showsplaying = "https://api.themoviedb.org/3/tv/airing_today?api_key="+APIKeyTMDB+"&language=en-US&page=1"
+  var showsplaying = "https://api.themoviedb.org/3/tv/popular?api_key="+APIKeyTMDB+"&language=en-US&page=1"
   fetch(showsplaying)
   .then(function(response){
     return response.json();
