@@ -1,5 +1,5 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
-var APIKeyMG = "	gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
+var APIKeyMG = "gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
 var goBtn = $("#go-button");
 
 //api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
@@ -47,6 +47,7 @@ function nameSearch(event) {
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
+      console.log(requestProvider);
       fetch(requestProvider)
         .then(function (response) {
           return response.json();
@@ -68,7 +69,6 @@ function nameSearch(event) {
                 console.log(streamProvider);
                 console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
-                // DONE: fix stacking issue by clearing results at start of click event
                 var providerList = $("#provider-list");
                 var providerName = $("<p id=provider-name>");
                 var iconPath =
@@ -86,13 +86,33 @@ function nameSearch(event) {
                 searchedDisplay.removeClass("hide");
                 // -----------------------------------------------------------------------------------------
               }
+            } else if (data.results.US.rent) {
+              for (let i = 0; i < data.results.US.rent.length; i++) {
+                var rentProvider = data.results.US.rent[i];
+                console.log(rentProvider);
+                console.log(rentProvider.provider_name);
+                // ----------------- Append rental provider name to HTML ---------------------------------
+                var rentalProviderList = $("#rental-provider-list");
+                var rentalProviderName = $("<p id=provider-name>");
+                var rentalIconPath =
+                  "https://image.tmdb.org/t/p/w200" + rentProvider.logo_path;
+                rentalProviderName.text(rentProvider.provider_name);
+                rentalProviderList.append(
+                  $("<img id=provider-icon src=" + rentalIconPath + ">")
+                );
+                rentalProviderList.append(rentalProviderName);
+                var mainDisplay = $(".main-display");
+                var searchedDisplay = $(".searched-display");
+                mainDisplay.addClass("hide");
+                searchedDisplay.removeClass("hide");
+              }
             } else {
-              // TODO: Give option to search for showtimes
               // ------- create message text on interval timer ---------------------------------------------
-              message.text("Not available on streaming");
+              message.text("Not available to stream or rent");
               setTimeout(function () {
                 message.text("");
               }, "1000");
+              // TODO: Give option to search for showtimes
             }
             // ---------------------------------------------------------------------------------------------
           }
