@@ -21,7 +21,7 @@ getAPI();
 //Fetch movie searching by name ------------------------------------------------------------------
 function nameSearch(event) {
   event.preventDefault();
-
+  $("#provider-list").empty();
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
@@ -52,45 +52,48 @@ function nameSearch(event) {
           return response.json();
         })
         .then(function (data) {
-          var message = $("#message");
-          if (!data.results.US) {
-            // --------- create message text on interval timer --------------------------------------------
-            message.text("Not available in the US");
-            setTimeout(function () {
-              message.text("");
-            }, "1000");
-            // --------------------------------------------------------------------------------------------
-          } else if (data.results.US.flatrate) {
-            for (let i = 0; i < data.results.US.flatrate.length; i++) {
-              var streamProvider = data.results.US.flatrate[i];
-              console.log(streamProvider);
-              console.log(streamProvider.provider_name);
-              // ----------------- Append streaming provider name to HTML ---------------------------------
-              // TODO: fix stacking issue by clearing results at start of click event
-              var providerList = $("#provider-list");
-              var providerName = $("<p>");
-              var iconPath =
-                "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
-              providerName.text(streamProvider.provider_name);
-              providerList.append($("<img src" + iconPath + ">"));
-              providerList.append(providerName);
-              // -----------------------------------------------------------------------------------------
-              // -------hide main display and show search page display -----------------------------------
-              var mainDisplay = $(".main-display");
-              var searchedDisplay = $(".searched-display");
-              mainDisplay.addClass("hide");
-              searchedDisplay.removeClass("hide");
-              // -----------------------------------------------------------------------------------------
+          results();
+          function results() {
+            var message = $("#message");
+            if (!data.results.US) {
+              // --------- create message text on interval timer --------------------------------------------
+              message.text("Not available in the US!");
+              setTimeout(function () {
+                message.text("");
+              }, "1000");
+              // --------------------------------------------------------------------------------------------
+            } else if (data.results.US.flatrate) {
+              for (let i = 0; i < data.results.US.flatrate.length; i++) {
+                var streamProvider = data.results.US.flatrate[i];
+                console.log(streamProvider);
+                console.log(streamProvider.provider_name);
+                // ----------------- Append streaming provider name to HTML ---------------------------------
+                // TODO: fix stacking issue by clearing results at start of click event
+                var providerList = $("#provider-list");
+                var providerName = $("<p>");
+                var iconPath =
+                  "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
+                providerName.text(streamProvider.provider_name);
+                providerList.append($("<img src" + iconPath + ">"));
+                providerList.append(providerName);
+                // -----------------------------------------------------------------------------------------
+                // -------hide main display and show search page display -----------------------------------
+                var mainDisplay = $(".main-display");
+                var searchedDisplay = $(".searched-display");
+                mainDisplay.addClass("hide");
+                searchedDisplay.removeClass("hide");
+                // -----------------------------------------------------------------------------------------
+              }
+            } else {
+              // TODO: Give option to search for showtimes
+              // ------- create message text on interval timer ---------------------------------------------
+              message.text("Not available on streaming");
+              setTimeout(function () {
+                message.text("");
+              }, "1000");
             }
-          } else {
-            // TODO: Give option to search for showtimes
-            // ------- create message text on interval timer ---------------------------------------------
-            message.text("Not available on streaming");
-            setTimeout(function () {
-              message.text("");
-            }, "1000");
+            // ---------------------------------------------------------------------------------------------
           }
-          // ---------------------------------------------------------------------------------------------
         });
     });
 }
