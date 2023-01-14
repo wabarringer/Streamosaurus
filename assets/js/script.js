@@ -68,13 +68,13 @@ function nameSearch(event) {
                 console.log(streamProvider);
                 console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
-                // TODO: fix stacking issue by clearing results at start of click event
+                // DONE: fix stacking issue by clearing results at start of click event
                 var providerList = $("#provider-list");
                 var providerName = $("<p>");
                 var iconPath =
                   "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
                 providerName.text(streamProvider.provider_name);
-                providerList.append($("<img src" + iconPath + ">"));
+                providerList.append($("<img src=" + iconPath + ">"));
                 providerList.append(providerName);
                 // -----------------------------------------------------------------------------------------
                 // -------hide main display and show search page display -----------------------------------
