@@ -184,6 +184,51 @@ function showSlides() {
   setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
 
+//-------------fetch api for top rated movies button -----------------------------
+function topmovies() {
+  var requesttop =
+    "https://api.themoviedb.org/3/movie/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+  fetch(requesttop)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.results[0].title);
+      for (let i = 0; i < data.results.length; i++) {
+        var topMovieList = data.results[i].title;
+        // console.log(topMovieList);
+        var topMovieListInput = $("#top-movie-list");
+        var movielistEl = $("<li>");
+        movielistEl.text(topMovieList);
+        topMovieListInput.append(movielistEl);
+      }
+    });
+}
+topmovies();
+//----------------------------
+function topshows() {
+  var requesttoptv =
+    "https://api.themoviedb.org/3/tv/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+  fetch(requesttoptv)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      console.log(data.results[0].name);
+      for (let i = 0; i < data.results.length; i++) {
+        var toptvList = data.results[i].name;
+        console.log(toptvList);
+        var toptvListInput = $("#top-tv-list");
+        var tvlistEl = $("<li>");
+        tvlistEl.text(toptvList);
+        toptvListInput.append(tvlistEl);
+      }
+    })
+}
+topshows();
+
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal

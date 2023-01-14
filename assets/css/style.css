@@ -47,6 +47,7 @@ h1 {
 header img {
     max-height: 70px;
     max-width: 70px;
+    padding-bottom: 5px;
 }
 
 .nav-links {
@@ -54,7 +55,7 @@ header img {
     flex-wrap: wrap;
 }
 
-header button {
+header button, a {
     color: var(--light);
     margin: 10px;
     padding: 7px;
@@ -66,7 +67,7 @@ header button {
     background: none;
 }
 
-header button:hover {
+header button:hover, a:hover{
     background: var(--deep);
     color: var(--background);
 }
@@ -234,6 +235,30 @@ row:after {
     flex-direction: column;
 }
 
+/*---------------searched section-----------------*/
+
+.main-card-hidden,
+.lower-cards {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    position: relative;
+}
+
+.poster {
+    background: var(--bright);
+    padding: 20px;
+    max-width: 450px;
+}
+
+.stats-card {
+    background: var(--bright);
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.cast-card h2
+
 footer {
     padding: 0;
     position:relative;
@@ -251,6 +276,7 @@ footer {
     font-weight: bold;
     position: absolute;
     margin: 10px;
+    border-radius: 10px;
     color: #FEF4D7;
 }
 
@@ -258,6 +284,11 @@ footer {
 
     header {
         display: block;
+    }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
     }
 
 }
