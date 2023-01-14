@@ -44,7 +44,7 @@
               placeholder="Search your favorite movie..."
               name="search"
             />
-            <input type="submit" id="go-button" value="Go" /><br />
+            <input type="submit" id="go-button" value="Go" />
             <label id="message"></label>
           </div>
         </form>
@@ -56,7 +56,7 @@
         <button class="js-modal-trigger" data-target="modal-TV">
           TV Shows
         </button>
-        <a href="new-releases links">New Releases</a>
+        <a href="#new-releases">New Releases</a>
       </div>
     </header>
 
@@ -111,7 +111,7 @@
           </div>
         </div>
 
-        <div class="section-2-cards">
+        <div class="section-2-cards" id="new-releases">
           <div class="recent-movies-card">
             <h2>In Theaters Now</h2>
             <ul id="in-theaters">
@@ -129,41 +129,96 @@
       </div>
 
       <!--------------------------searched page display------------------------->
-      <section class="hide searched-display">
-        <div class="poster">
-          <img class="poster-img" />
-        </div>
+      <div class="searched-display hide">
+          
+          <!--reviews will be caption on poster-->
+          
+          <div class="upper-cards">
+              <div class="showtimes-card">
+                  <div class="form">
+                      <form>
+                              <input
+                              id="input"
+                              type="text"
+                              placeholder="Enter ZIP code..."
+                              name="search"
+                              />
+                              <input type="submit" id="go-button" value="Go" />
+                        </form>
+                        <div class="showtime-results">
+                            <!-- <p>Showtime</p>
+                            <p>Showtime</p>
+                            <p>Showtime</p>
+                            <p>Showtime</p>
+                            <p>Showtime</p> -->
+                        </div>
+                    </div>
+                    <!--add in form, button and ul div for showtimes after zipcode input-->
+                </div>
+                
+                <div class="streaming-card">
+                    <p>Streaming on:</p>
+                    <div id="provider-list">
+                        <!-- insert streaming icons -->
+                    </div>
+                    <!--create <img> with a source with the image id-->
+                </div>
 
-        <div class="stats-card">
-          <ul>
-            <!--insert stats as list items with the name of the stat before ex.(x.textContent = "Cast: John Doe, Jane Doe, Johnny Does") use .createElement-->
-          </ul>
-        </div>
+                <div class="rental-card">
+                    <p>Rent on:</p>
+                    <div id="rental-provider-list">
+                        <!-- insert streaming icons -->
+                    </div>
+                    <!--create <img> with a source with the image id-->
+                </div>
+            </div>
 
-        <div class="reviews-card">
-          <ul>
-            <!--insert reviews as list with .createElement-->
-          </ul>
+            <div class="lower-cards">
+                <div class="poster">
+                    <img
+                      src="https://www.defining.co/wp-content/uploads/2022/09/image_24fc0a3c-4653-4ff2-aac1-24012fe42911.jpg"
+                    />
+                    <div class="caption">Rated 9/10</div>
+                  </div>
+        
+                <div class="stats-card">
+                    <div class="synopsis-card">
+                        <p class="synopsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia excepturi expedita veniam repellat ipsa amet voluptas, iure quaerat laborum dolorem ducimus, alias cumque dignissimos perferendis. Labore quod perferendis nihil vel exercitationem blanditiis commodi in omnis odit. Tempore hic tempora dolore nemo ut expedita delectus similique, facilis porro ratione corporis ullam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet nisi voluptatum error molestiae modi pariatur, cumque quod debitis maiores, dolores omnis quisquam! Praesentium modi dolor quam animi facere dolorem natus asperiores reprehenderit odio assumenda, aperiam voluptate excepturi explicabo aliquam enim ex quae quia consectetur soluta eos consequuntur architecto. Quod.</p>
+                    </div>
+                    <div class="cast-card">
+                        <h2>Cast:</h2>
+                        <ul>
+                            <li>Norman Reedus as Daryl Dixon</li>
+                            <li>Andrew Lincoln as Rick Grimes</li>
+                            <li>Chandler Riggs as Carl Grimed</li>
+                            <li>Lauren Cohen as Maggie Rhee</li>
+                            <li>Steven Yeun as Glenn Rhee</li>
+                            <li>Melissa McBride as Carol Peletier</li>
+                            <li>Danai Gurira as Michonne</li>
+                            <li>Jeffrey Dean Morgan as Negan Smith</li>
+                            <!--list 8 cast members-->
+                        </ul>
+                    </div>
+        
+                    <div class="rating-card">
+                        <h2>Rating:</h2>
+                        <p id="rating">TV-13</p>
+                    </div>
+        
+                    <div class="box-office-card">
+                        <h2>Box Office Earnings:</h2>
+                        <p id="box-office">$603,108</p>
+                    </div>
+        
+                </div>
+            </div>
         </div>
-
-        <div class="showtimes">
-          <!--add in form, button and ul div for showtimes after zipcode input-->
-        </div>
-
-        <div class="streaming">
-          <p>Streaming on:</p>
-          <ul id="provider-list">
-            <!-- insert streaming icons -->
-          </ul>
-          <!--create <img> with a source with the image id-->
-        </div>
-      </section>
-
-      <!----------movies nav tab------->
-      <section class="movies-nav hide"></section>
+        
+        <!----------movies nav tab------->
+      <div class="movies-nav hide"></div>
 
       <!---------tv shows nav tab---------->
-      <section class="tv-nav hide"></section>
+      <div class="tv-nav hide"></div>
     </main>
 
     <!----------------------------------------footer-------------------------------------------------------->

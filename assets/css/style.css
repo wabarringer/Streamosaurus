@@ -47,6 +47,7 @@ h1 {
 header img {
     max-height: 70px;
     max-width: 70px;
+    padding-bottom: 5px;
 }
 
 .nav-links {
@@ -54,7 +55,7 @@ header img {
     flex-wrap: wrap;
 }
 
-header button {
+header button, a {
     color: var(--light);
     margin: 10px;
     padding: 7px;
@@ -66,7 +67,7 @@ header button {
     background: none;
 }
 
-header button:hover {
+header button:hover, a:hover{
     background: var(--deep);
     color: var(--background);
 }
@@ -234,6 +235,120 @@ row:after {
     flex-direction: column;
 }
 
+/*---------------searched section-----------------*/
+
+.upper-cards,
+.lower-cards {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+/*---------upper cards styling--------*/
+
+.upper-cards input[type=text] {
+    padding: 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 8px 0 var(--deep);
+    transition: 0.4s;
+    width: 100%;
+    position: relative;
+    padding-right: 50px;
+}
+
+input[type=text]:hover {
+    box-shadow: 0 0 20px 0 var(--deep);
+}
+
+.upper-cards input[type=submit] {
+    background: var(--light);
+    font-size: 15px;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.4s;
+    float: right;
+    position: absolute;
+    margin-left: -50px;
+}
+
+.upper-cards input[type=submit]:hover {
+    background: var(--deep);
+    color: var(--background);
+}
+
+.showtime-results {
+    display: flex;
+    flex-direction: row;
+}
+
+/*--------lower cards styling--------*/
+
+.poster {
+    background: var(--bright);
+    padding: 10px;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.poster .caption {
+    text-align: center;
+    color: var(--dark);
+    font-size: 20px;
+}
+
+.poster img {
+    border-radius: 20px;
+}
+
+.stats-card {
+    background: var(--bright);
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color: var(--dark);
+    padding: 20px;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    max-width: 75%;
+}
+
+.synopsis {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.cast-card,
+.rating-card,
+.box-office-card {
+    margin: 10px;
+    text-align: center;
+    border-right: 2px solid rgba(0, 0, 0, 0.276);
+    padding-right: 9%;
+}
+
+.box-office-card,
+.rating-card {
+    font-size: 25px;
+}
+.cast-card h2,
+.rating-card h2,
+.box-office-card h2 {
+    font-size: 30px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.box-office-card {
+    border: none;
+    padding-right: 0;
+}
+
+
 footer {
     padding: 0;
     position:relative;
@@ -251,13 +366,53 @@ footer {
     font-weight: bold;
     position: absolute;
     margin: 10px;
+    border-radius: 5px;
     color: #FEF4D7;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width:950px ) {
+    .lower-cards,
+    .upper-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .cast-card,
+    .rating-card,
+    .box-office-card {
+        border: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
 
     header {
         display: block;
     }
 
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
+    }
+
+    .lower-cards,
+    .upper-cards {
+        flex-direction: column;
+    }
+
+    .cast-card,
+    .rating-card,
+    .box-office-card {
+        border: none;
+    }
+
+    header .form {
+        width: 100%;
+    }
 }

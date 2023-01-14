@@ -1,5 +1,5 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
-var APIKeyMG = "	gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
+var APIKeyMG = "gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
 var goBtn = $("#go-button");
 
 //api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
@@ -21,13 +21,7 @@ getAPI();
 //Fetch movie searching by name ------------------------------------------------------------------
 function nameSearch(event) {
   event.preventDefault();
-
-  // TODO: hide main display and show search page display
-  var mainDisplay = $(".main-display");
-  var searchedDisplay = $(".searched-display");
-  mainDisplay.addClass("hide");
-  searchedDisplay.removeClass("hide");
-
+  $("#provider-list").empty();
   var Searchname = event.currentTarget;
   console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
@@ -53,47 +47,79 @@ function nameSearch(event) {
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
+      console.log(requestProvider);
       fetch(requestProvider)
         .then(function (response) {
           return response.json();
         })
         .then(function (data) {
-          var message = $("#message");
-          if (!data.results.US) {
-            console.log("Not available in the US");
-            message.text("Not available in the US");
-            // TODO: create message text on interval timer
-            setTimeout(function () {
-              message.text("");
-            }, "1000");
-          } else if (data.results.US.flatrate) {
-            for (let i = 0; i < data.results.US.flatrate.length; i++) {
-              var streamProvider = data.results.US.flatrate[i];
-              console.log(streamProvider);
-              console.log(streamProvider.provider_name);
-              var providerList = $("#provider-list");
-              var providerIcon = $("<li>");
-              providerIcon.text(streamProvider.provider_name);
-              providerList.append(providerIcon);
+          results();
+          function results() {
+            var message = $("#message");
+            if (!data.results.US) {
+              // --------- create message text on interval timer --------------------------------------------
+              message.text("Not available in the US!");
+              setTimeout(function () {
+                message.text("");
+              }, "1000");
+              // --------------------------------------------------------------------------------------------
+            } else if (data.results.US.flatrate) {
+              for (let i = 0; i < data.results.US.flatrate.length; i++) {
+                var streamProvider = data.results.US.flatrate[i];
+                console.log(streamProvider);
+                console.log(streamProvider.provider_name);
+                // ----------------- Append streaming provider name to HTML ---------------------------------
+                var providerList = $("#provider-list");
+                var providerName = $("<p id=provider-name>");
+                var iconPath =
+                  "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
+                providerName.text(streamProvider.provider_name);
+                providerList.append(
+                  $("<img id=provider-icon src=" + iconPath + ">")
+                );
+                providerList.append(providerName);
+                // -----------------------------------------------------------------------------------------
+                // -------hide main display and show search page display -----------------------------------
+                var mainDisplay = $(".main-display");
+                var searchedDisplay = $(".searched-display");
+                mainDisplay.addClass("hide");
+                searchedDisplay.removeClass("hide");
+                // -----------------------------------------------------------------------------------------
+              }
+            } else if (data.results.US.rent) {
+              for (let i = 0; i < data.results.US.rent.length; i++) {
+                var rentProvider = data.results.US.rent[i];
+                console.log(rentProvider);
+                console.log(rentProvider.provider_name);
+                // ----------------- Append rental provider name to HTML ---------------------------------
+                var rentalProviderList = $("#rental-provider-list");
+                var rentalProviderName = $("<p id=provider-name>");
+                var rentalIconPath =
+                  "https://image.tmdb.org/t/p/w200" + rentProvider.logo_path;
+                rentalProviderName.text(rentProvider.provider_name);
+                rentalProviderList.append(
+                  $("<img id=provider-icon src=" + rentalIconPath + ">")
+                );
+                rentalProviderList.append(rentalProviderName);
+                var mainDisplay = $(".main-display");
+                var searchedDisplay = $(".searched-display");
+                mainDisplay.addClass("hide");
+                searchedDisplay.removeClass("hide");
+              }
+            } else {
+              // ------- create message text on interval timer ---------------------------------------------
+              message.text("Not available to stream or rent");
+              setTimeout(function () {
+                message.text("");
+              }, "1000");
+              // TODO: Give option to search for showtimes
             }
-          } else {
-            console.log("Not available on streaming");
-            message.text("Not available on streaming");
-            // DONE: create message text on interval timer
-            setTimeout(function () {
-              message.text("");
-            }, "1000");
-            // DONE: create message text on interval timer
+            // ---------------------------------------------------------------------------------------------
           }
-          // TODO: list all available streaming providers
-          // TODO: figure out how to use the jpeg path provided inside the API
         });
     });
 }
 goBtn.on("click", nameSearch);
-
-
-
 
 //Fetch Trending Movies or tv -----------------------------------------------------------------
 
@@ -186,7 +212,9 @@ function showSlides() {
 //-------------fetch api for top rated movies button -----------------------------
 function topmovies() {
   var requesttop =
-    "https://api.themoviedb.org/3/movie/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+    "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(requesttop)
     .then(function (response) {
       return response.json();
@@ -208,7 +236,9 @@ topmovies();
 //----------------------------
 function topshows() {
   var requesttoptv =
-    "https://api.themoviedb.org/3/tv/top_rated?api_key="+APIKeyTMDB+"&language=en-US&page=1";
+    "https://api.themoviedb.org/3/tv/top_rated?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(requesttoptv)
     .then(function (response) {
       return response.json();
@@ -224,7 +254,7 @@ function topshows() {
         tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
       }
-    })
+    });
 }
 topshows();
 //-----------------displays recent movies---------------------------
@@ -285,46 +315,51 @@ fetch(trendingmov)
 }
 trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
   function openModal($el) {
-    $el.classList.add('is-active');
+    $el.classList.add("is-active");
   }
 
   function closeModal($el) {
-    $el.classList.remove('is-active');
+    $el.classList.remove("is-active");
   }
 
   function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    (document.querySelectorAll(".modal") || []).forEach(($modal) => {
       closeModal($modal);
     });
   }
 
   // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+  (document.querySelectorAll(".js-modal-trigger") || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
+    $trigger.addEventListener("click", () => {
       openModal($target);
     });
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+  (
+    document.querySelectorAll(
+      ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+    ) || []
+  ).forEach(($close) => {
+    const $target = $close.closest(".modal");
 
-    $close.addEventListener('click', () => {
+    $close.addEventListener("click", () => {
       closeModal($target);
     });
   });
 
   // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     const e = event || window.event;
 
-    if (e.keyCode === 27) { // Escape key
+    if (e.keyCode === 27) {
+      // Escape key
       closeAllModals();
     }
   });
