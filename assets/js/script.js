@@ -1,5 +1,5 @@
 var APIKeyTMDB = "e4fdcb0708125c02d9d3bb1ad5536644";
-var APIKeyMG = "gLzhamakWx2Q3FRoiJdGL8v40Iz440nZ5TH6l6a4";
+var APIKeyMG = "I8kAI3zU053ukzkfjCmdi8ScpdJ7HtiHOgCFiaLf";
 var goBtn = $("#go-button");
 
 //api.themoviedb.org/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg
@@ -22,6 +22,7 @@ getAPI();
 function nameSearch(event) {
   event.preventDefault();
   $("#provider-list").empty();
+  $("#rental-provider-list").empty();
   var Searchname = event.currentTarget;
   //console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
@@ -41,7 +42,9 @@ function nameSearch(event) {
       //console.log(data);
       // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
+      // TODO: Make sure TV shows are searchable
       var storedID = data.results[0].id;
+      console.log(data.results);
       var requestProvider =
         "https://api.themoviedb.org/3/movie/" +
         storedID +
@@ -70,14 +73,17 @@ function nameSearch(event) {
                 //console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
                 var providerList = $("#provider-list");
+                var iconCard = $("<div class=icon-card></div>");
+                providerList.append(iconCard);
                 var providerName = $("<p id=provider-name>");
                 var iconPath =
                   "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
                 providerName.text(streamProvider.provider_name);
-                providerList.append(
+
+                iconCard.append(
                   $("<img id=provider-icon src=" + iconPath + ">")
                 );
-                providerList.append(providerName);
+                iconCard.append(providerName);
                 // -----------------------------------------------------------------------------------------
                 // -------hide main display and show search page display -----------------------------------
                 var mainDisplay = $(".main-display");
@@ -93,14 +99,16 @@ function nameSearch(event) {
                 console.log(rentProvider.provider_name);
                 // ----------------- Append rental provider name to HTML ---------------------------------
                 var rentalProviderList = $("#rental-provider-list");
+                var iconCard = $("<div class=icon-card></div>");
+                rentalProviderList.append(iconCard);
                 var rentalProviderName = $("<p id=provider-name>");
                 var rentalIconPath =
                   "https://image.tmdb.org/t/p/w200" + rentProvider.logo_path;
                 rentalProviderName.text(rentProvider.provider_name);
-                rentalProviderList.append(
+                iconCard.append(
                   $("<img id=provider-icon src=" + rentalIconPath + ">")
                 );
-                rentalProviderList.append(rentalProviderName);
+                iconCard.append(rentalProviderName);
                 var mainDisplay = $(".main-display");
                 var searchedDisplay = $(".searched-display");
                 mainDisplay.addClass("hide");
@@ -192,9 +200,9 @@ moviereviews(); //returns reviews by folks on the TMDB site
 
 //from movie info available: poster_path, original_language, overview, release_date, vote_average
 
-
 function displayDetailsInModal(movieId) {
-  var requestURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key="+APIKeyTMDB;
+  var requestURL =
+    "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + APIKeyTMDB;
 
   fetch(requestURL)
     .then(function (response) {
@@ -202,17 +210,25 @@ function displayDetailsInModal(movieId) {
     })
     .then(function (data) {
       //console.log(data);
-      $("#my-image2").attr("src","https://www.themoviedb.org/t/p/w500" + data.poster_path)
-      $("#my-image").attr("src","https://www.themoviedb.org/t/p/w500" + data.backdrop_path)
-      $("#movie-title").text(data.original_title)
-      $("#release-date").text(data.release_date)
-      $("#original-language").text(data.original_language)
-      $("#rated").text("R")
-      $("#genres").text(data.genres.map(function(item) {
-        return item['name'];
-      }))
-      $("#overview" ).text(data.overview)
-      $("#vote-avg" ).text(data.vote_average)
+      $("#my-image2").attr(
+        "src",
+        "https://www.themoviedb.org/t/p/w500" + data.poster_path
+      );
+      $("#my-image").attr(
+        "src",
+        "https://www.themoviedb.org/t/p/w500" + data.backdrop_path
+      );
+      $("#movie-title").text(data.original_title);
+      $("#release-date").text(data.release_date);
+      $("#original-language").text(data.original_language);
+      $("#rated").text("R");
+      $("#genres").text(
+        data.genres.map(function (item) {
+          return item["name"];
+        })
+      );
+      $("#overview").text(data.overview);
+      $("#vote-avg").text(data.vote_average);
     });
 }
 
@@ -283,60 +299,67 @@ function topshows() {
 }
 topshows();
 //-----------------displays recent movies---------------------------
-function theatermovies(){
-var theatermovies = "https://api.themoviedb.org/3/movie/now_playing?api_key="+APIKeyTMDB+"&language=en-US";
-fetch(theatermovies)
-.then(function (response){
-  return response.json();
-})
-.then(function (data){
-  // console.log(data);
-  // console.log(data.results[0].title)
-  for (let i = 0; i < 8; i++) {
-    var playingmovies = data.results[i].title;
-    // console.log(playingmovies);
-    var playingnow = $("#in-theaters");
-    var intheatersEl = $("<li>");
-    intheatersEl.text(playingmovies);
-    playingnow.append(intheatersEl);
-  }
-})
+function theatermovies() {
+  var theatermovies =
+    "https://api.themoviedb.org/3/movie/now_playing?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US";
+  fetch(theatermovies)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.results[0].title)
+      for (let i = 0; i < 8; i++) {
+        var playingmovies = data.results[i].title;
+        // console.log(playingmovies);
+        var playingnow = $("#in-theaters");
+        var intheatersEl = $("<li>");
+        intheatersEl.text(playingmovies);
+        playingnow.append(intheatersEl);
+      }
+    });
 }
 theatermovies();
 
 //-----------------TV List---------------------------
 function playingshows() {
-  var showsplaying = "https://api.themoviedb.org/3/tv/popular?api_key="+APIKeyTMDB+"&language=en-US&page=1"
+  var showsplaying =
+    "https://api.themoviedb.org/3/tv/popular?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(showsplaying)
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    // console.log(data)
-    // console.log(data.results[0].name)
-    for (let i = 0; i < 8; i++) {
-      var playingshows = data.results[i].name;
-      // console.log(playingshows);
-      var tvplayingnow = $("#in-tv");
-      var tvplayingEl = $("<li>");
-      tvplayingEl.text(playingshows);
-      tvplayingnow.append(tvplayingEl);
-    }
-  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data)
+      // console.log(data.results[0].name)
+      for (let i = 0; i < 8; i++) {
+        var playingshows = data.results[i].name;
+        // console.log(playingshows);
+        var tvplayingnow = $("#in-tv");
+        var tvplayingEl = $("<li>");
+        tvplayingEl.text(playingshows);
+        tvplayingnow.append(tvplayingEl);
+      }
+    });
 }
 playingshows();
 
 //------------------trending movie images --------------------------------------
 function trendingposter() {
-  var trendingmov = "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
+  var trendingmov =
+    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
 
-fetch(trendingmov)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-})
+  fetch(trendingmov)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
 }
 trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
@@ -392,7 +415,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //-------------API to populate the carousel -----------------------------
 function displayTopFive() {
-  var requesttop = "https://api.themoviedb.org/3//movie/now_playing?api_key=" + APIKeyTMDB + "&language=en-US&page=1";
+  var requesttop =
+    "https://api.themoviedb.org/3//movie/now_playing?api_key=" +
+    APIKeyTMDB +
+    "&language=en-US&page=1";
   fetch(requesttop)
     .then(function (response) {
       return response.json();
@@ -403,20 +429,21 @@ function displayTopFive() {
       for (let i = 0; i < 5; i++) {
         var movieId = data.results[i].id;
         var movieTitle = data.results[i].title;
-        var posterPath = "https://www.themoviedb.org/t/p/w500" + data.results[i].poster_path;
-        var currentImg = $(carouselList[i])
+        var posterPath =
+          "https://www.themoviedb.org/t/p/w500" + data.results[i].poster_path;
+        var currentImg = $(carouselList[i]);
         currentImg.attr("src", posterPath);
-        currentImg.attr("movieId",movieId)
+        currentImg.attr("movieId", movieId);
       }
     });
 }
-displayTopFive ();
+displayTopFive();
 
 //--------------------click events to carousel-----------------------------------------
-$(".carousel-img").each(function (){
-  var currentImg = $(this)
+$(".carousel-img").each(function () {
+  var currentImg = $(this);
   currentImg.click(() => {
-    var movieId = currentImg.attr("movieId")
-    displayDetailsInModal(movieId)
-  })
-})
+    var movieId = currentImg.attr("movieId");
+    displayDetailsInModal(movieId);
+  });
+});
