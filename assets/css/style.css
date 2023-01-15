@@ -122,10 +122,11 @@ row:after {
 .trending {
     padding: 30px;
     border-radius: 20px;
-    margin: 30px;
     background: var(--bright);
     max-width: 50%;
     position: relative;
+    margin-left: 10%;
+    margin-right: -8s0px;
 }
 
 
@@ -248,7 +249,9 @@ row:after {
 
 /*---------upper cards styling--------*/
 
-.upper-cards input[type=text] {
+
+/*-----for showtimes section, unsure if it will be used----*/
+/* .upper-cards input[type=text] {
     padding: 15px;
     font-size: 15px;
     border: none;
@@ -284,6 +287,51 @@ input[type=text]:hover {
 .showtime-results {
     display: flex;
     flex-direction: row;
+} */
+
+.rental-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.streaming-card,
+.rental-card {
+    min-width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: var(--bright);
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--dark);
+    margin: 10px;
+}
+
+.streaming-title,
+.rental-title {
+    font-size: 20px;
+    margin: 10px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2px;
+}
+
+.provider-list,
+.rental-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#provider-icon {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
 }
 
 /*--------lower cards styling--------*/
@@ -387,6 +435,11 @@ footer {
     .rating-card,
     .box-office-card {
         border: none;
+    }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
     }
 }
 
