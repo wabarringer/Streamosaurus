@@ -116,6 +116,23 @@ row:after {
 }
 
 
+
+
+/*-----modal style------*/
+
+.modal-card-head {
+    background: var(--bright);
+}
+
+.modal-card-body {
+    background: var(--background);
+    color: var(--dark);
+}
+
+.modal-card-foot {
+    background: var(--bright);
+}
+
 /* __________main section __________*/
 
 
@@ -125,10 +142,9 @@ row:after {
     padding: 30px;
     border-radius: 20px;
     background: var(--bright);
-    max-width: 50%;
+    width: 30%;
     position: relative;
-    margin-left: 10%;
-    margin-right: -8s0px;
+    text-align: center;
 }
 
 
@@ -138,7 +154,11 @@ row:after {
 .carousel {
     max-width: 100%;
     position: relative;
-    margin: 20px 200px;
+    margin: 20px;
+    background: var(--bright);
+    padding: 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
 }
 
 .mySlides {
@@ -223,7 +243,11 @@ row:after {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 20px;
-    /* position: relative; */
+    position: relative;
+}
+
+.main-card {
+    flex-direction: column;
 }
 
 .section-2-cards h2 {
@@ -413,6 +437,12 @@ footer {
     text-align: center;
 }
 
+footer img {
+    float: right;
+    width: 10px;
+    height: 10px;
+}
+
 .hide {
     display: none;   
 }
@@ -434,7 +464,16 @@ footer {
     }
 
     header .form {
-        width: 100%;
+        width: 80%;
+    }
+
+    .carousel {
+        width: 50%;
+        flex-shrink: 0;
+    }
+    
+    .trending {
+        width: 50%;
     }
 }
 
@@ -448,19 +487,20 @@ footer {
     .main-card,
     .section-2-cards {
         flex-direction: column;
+        justify-content: center;
     }
 
     .trending {
-        margin: 0;
+        width: 50%;
     }
+
+    /* .carousel {
+        width: 80%;
+    } */
 
 }
 
-@media screen and (max-width: 500px) {
-
-    header {
-        display: block;
-    }
+@media screen and (max-width: 580px) {
 
     .main-card,
     .section-2-cards {
@@ -483,7 +523,7 @@ footer {
     }
 
     .trending {
-        margin: 0;
+        width: 100%;
     }
 
     .main-card {
