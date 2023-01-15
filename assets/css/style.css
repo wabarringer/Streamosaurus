@@ -119,21 +119,26 @@ row:after {
 /* __________main section __________*/
 
 
+
+
 .trending {
     padding: 30px;
     border-radius: 20px;
-    margin: 30px;
     background: var(--bright);
     max-width: 50%;
     position: relative;
+    margin-left: 10%;
+    margin-right: -8s0px;
 }
 
 
 
+
+
 .carousel {
-    max-width: 800px;
+    max-width: 100%;
     position: relative;
-    margin: auto;
+    margin: 20px 200px;
 }
 
 .mySlides {
@@ -207,14 +212,18 @@ row:after {
     to {opacity: 1}
   }
 
+
+
+
 .main-card,
 .section-2-cards {
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin: 20px;
-    position: relative;
+    /* position: relative; */
 }
 
 .section-2-cards h2 {
@@ -248,7 +257,9 @@ row:after {
 
 /*---------upper cards styling--------*/
 
-.upper-cards input[type=text] {
+
+/*-----for showtimes section, unsure if it will be used----*/
+/* .upper-cards input[type=text] {
     padding: 15px;
     font-size: 15px;
     border: none;
@@ -284,6 +295,51 @@ input[type=text]:hover {
 .showtime-results {
     display: flex;
     flex-direction: row;
+} */
+
+.rental-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.streaming-card,
+.rental-card {
+    min-width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: var(--bright);
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--dark);
+    margin: 10px;
+}
+
+.streaming-title,
+.rental-title {
+    font-size: 20px;
+    margin: 10px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2px;
+}
+
+.provider-list,
+.rental-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#provider-icon {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
 }
 
 /*--------lower cards styling--------*/
@@ -388,6 +444,16 @@ footer {
     .box-office-card {
         border: none;
     }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
+    }
+
+    .trending {
+        margin: 0;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
@@ -413,6 +479,18 @@ footer {
     }
 
     header .form {
+        width: 100%;
+    }
+
+    .trending {
+        margin: 0;
+    }
+
+    .main-card {
+        flex-wrap: nowrap;
+    }
+
+    .carousel {
         width: 100%;
     }
 }
