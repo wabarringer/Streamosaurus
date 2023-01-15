@@ -132,7 +132,7 @@ function gettrendingAPI() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
       var top5 = data.results;
     }); //returns 20 pages; could do results 1-5
 }
@@ -244,11 +244,11 @@ function topshows() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(data.results[0].name);
+      // console.log(data);
+      // console.log(data.results[0].name);
       for (let i = 0; i < data.results.length; i++) {
         var toptvList = data.results[i].name;
-        console.log(toptvList);
+        // console.log(toptvList);
         var toptvListInput = $("#top-tv-list");
         var tvlistEl = $("<li>");
         tvlistEl.text(toptvList);
@@ -257,7 +257,63 @@ function topshows() {
     });
 }
 topshows();
+//-----------------displays recent movies---------------------------
+function theatermovies(){
+var theatermovies = "https://api.themoviedb.org/3/movie/now_playing?api_key="+APIKeyTMDB+"&language=en-US";
+fetch(theatermovies)
+.then(function (response){
+  return response.json();
+})
+.then(function (data){
+  // console.log(data);
+  // console.log(data.results[0].title)
+  for (let i = 0; i < 8; i++) {
+    var playingmovies = data.results[i].title;
+    // console.log(playingmovies);
+    var playingnow = $("#in-theaters");
+    var intheatersEl = $("<li>");
+    intheatersEl.text(playingmovies);
+    playingnow.append(intheatersEl);
+  }
+})
+}
+theatermovies();
 
+//-----------------TV List---------------------------
+function playingshows() {
+  var showsplaying = "https://api.themoviedb.org/3/tv/popular?api_key="+APIKeyTMDB+"&language=en-US&page=1"
+  fetch(showsplaying)
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    // console.log(data)
+    // console.log(data.results[0].name)
+    for (let i = 0; i < 8; i++) {
+      var playingshows = data.results[i].name;
+      // console.log(playingshows);
+      var tvplayingnow = $("#in-tv");
+      var tvplayingEl = $("<li>");
+      tvplayingEl.text(playingshows);
+      tvplayingnow.append(tvplayingEl);
+    }
+  })
+}
+playingshows();
+
+//------------------trending movie images --------------------------------------
+function trendingposter() {
+  var trendingmov = "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
+
+fetch(trendingmov)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+})
+}
+trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
