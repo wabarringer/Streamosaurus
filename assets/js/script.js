@@ -13,7 +13,7 @@ https: function getAPI() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //console.log(data);
     });
 }
 getAPI();
@@ -23,7 +23,7 @@ function nameSearch(event) {
   event.preventDefault();
   $("#provider-list").empty();
   var Searchname = event.currentTarget;
-  console.log(event.currentTarget);
+  //console.log(event.currentTarget);
   var Inputtext = $(Searchname).siblings("#input"); //the elemntID of the movie text input
   var nametextsave = Inputtext.val();
 
@@ -38,7 +38,7 @@ function nameSearch(event) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //console.log(data);
       // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
       var storedID = data.results[0].id;
@@ -66,8 +66,8 @@ function nameSearch(event) {
             } else if (data.results.US.flatrate) {
               for (let i = 0; i < data.results.US.flatrate.length; i++) {
                 var streamProvider = data.results.US.flatrate[i];
-                console.log(streamProvider);
-                console.log(streamProvider.provider_name);
+                //console.log(streamProvider);
+                //console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
                 var providerList = $("#provider-list");
                 var providerName = $("<p id=provider-name>");
@@ -132,7 +132,7 @@ function gettrendingAPI() {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
+      //console.log(data);
       var top5 = data.results;
     }); //returns 20 pages; could do results 1-5
 }
@@ -150,7 +150,7 @@ function watchproviders() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //console.log(data);
     });
 }
 watchproviders();
@@ -166,7 +166,7 @@ function recentmovies() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //console.log(data);
     });
 }
 
@@ -182,14 +182,39 @@ function moviereviews() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      //console.log(data);
     });
 }
 moviereviews(); //returns reviews by folks on the TMDB site
 //if results=none, display text = unable to stream this movie, option to input zip code for Theater
 
 //What do do when the movie has multiple results?
+
 //from movie info available: poster_path, original_language, overview, release_date, vote_average
+
+
+function displayDetailsInModal(movieId) {
+  var requestURL = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key="+APIKeyTMDB;
+
+  fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      //console.log(data);
+      $("#my-image2").attr("src","https://www.themoviedb.org/t/p/w500" + data.poster_path)
+      $("#my-image").attr("src","https://www.themoviedb.org/t/p/w500" + data.backdrop_path)
+      $("#movie-title").text(data.original_title)
+      $("#release-date").text(data.release_date)
+      $("#original-language").text(data.original_language)
+      $("#rated").text("R")
+      $("#genres").text(data.genres.map(function(item) {
+        return item['name'];
+      }))
+      $("#overview" ).text(data.overview)
+      $("#vote-avg" ).text(data.vote_average)
+    });
+}
 
 //-----------------slideshow js-------------------
 let slideIndex = 0;
@@ -244,11 +269,11 @@ function topshows() {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
-      // console.log(data.results[0].name);
+      //console.log(data);
+      //console.log(data.results[0].name);
       for (let i = 0; i < data.results.length; i++) {
         var toptvList = data.results[i].name;
-        // console.log(toptvList);
+        //console.log(toptvList);
         var toptvListInput = $("#top-tv-list");
         var tvlistEl = $("<li>");
         tvlistEl.text(toptvList);
@@ -364,3 +389,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+//-------------API to populate the carousel -----------------------------
+function displayTopFive() {
+  var requesttop = "https://api.themoviedb.org/3//movie/now_playing?api_key=" + APIKeyTMDB + "&language=en-US&page=1";
+  fetch(requesttop)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      //console.log(data);
+      var carouselList = $(".carousel-img");
+      for (let i = 0; i < 5; i++) {
+        var movieId = data.results[i].id;
+        var movieTitle = data.results[i].title;
+        var posterPath = "https://www.themoviedb.org/t/p/w500" + data.results[i].poster_path;
+        var currentImg = $(carouselList[i])
+        currentImg.attr("src", posterPath);
+        currentImg.attr("movieId",movieId)
+      }
+    });
+}
+displayTopFive ();
+
+//--------------------click events to carousel-----------------------------------------
+$(".carousel-img").each(function (){
+  var currentImg = $(this)
+  currentImg.click(() => {
+    var movieId = currentImg.attr("movieId")
+    displayDetailsInModal(movieId)
+  })
+})
