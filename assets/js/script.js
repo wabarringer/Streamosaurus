@@ -342,7 +342,11 @@ function theatermovies() {
 }
 theatermovies();
 
-var theaterBtn = $('#theaterlink')
+var theaterBtn = document.getElementsByClassName('theaterlink')
+console.log(theaterBtn)
+var button2 = $("theaterlink")
+console.log(button2)
+
 
 //-----------------TV List---------------------------
 function playingshows() {
