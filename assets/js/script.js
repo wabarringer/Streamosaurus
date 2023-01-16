@@ -271,14 +271,19 @@ function topmovies() {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
-      // console.log(data.results[0].title);
+     
       for (let i = 0; i < data.results.length; i++) {
         var topMovieList = data.results[i].title;
         // console.log(topMovieList);
         var topMovieListInput = $("#top-movie-list");
         var movielistEl = $("<li>");
-        movielistEl.text(topMovieList);
+        var movielistLink = $("<a>");
+        movielistLink.text(topMovieList);
+        movielistEl.append(movielistLink);
+        movielistLink.addClass("listlink")
+        movielistLink.attr('id', 'ml'+[i])
+        // movielistEl.text(topMovieList);
+
         topMovieListInput.append(movielistEl);
       }
     });
@@ -302,7 +307,12 @@ function topshows() {
         //console.log(toptvList);
         var toptvListInput = $("#top-tv-list");
         var tvlistEl = $("<li>");
-        tvlistEl.text(toptvList);
+        var showlistlink = $("<a>")
+        showlistlink.text(toptvList)
+        tvlistEl.append(showlistlink)
+        showlistlink.addClass("topshowlink")
+        showlistlink.attr('id', 'tsl'+[i])
+        // tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
       }
     });
@@ -326,12 +336,23 @@ function theatermovies() {
         // console.log(playingmovies);
         var playingnow = $("#in-theaters");
         var intheatersEl = $("<li>");
-        intheatersEl.text(playingmovies);
+        var theaterlistlink = $("<a>")
+        theaterlistlink.text(playingmovies)
+        intheatersEl.append(theaterlistlink)
+        theaterlistlink.addClass("theaterlink")
+        theaterlistlink.attr('id', 'tl'+[i])
+        // intheatersEl.text(playingmovies);
         playingnow.append(intheatersEl);
       }
     });
 }
 theatermovies();
+
+var theaterBtn = document.getElementsByClassName('theaterlink')
+console.log(theaterBtn)
+var button2 = $("theaterlink")
+console.log(button2)
+
 
 //-----------------TV List---------------------------
 function playingshows() {
@@ -351,7 +372,11 @@ function playingshows() {
         // console.log(playingshows);
         var tvplayingnow = $("#in-tv");
         var tvplayingEl = $("<li>");
-        tvplayingEl.text(playingshows);
+        var showlistlink = $("<a>")
+        showlistlink.text(playingshows)
+        tvplayingEl.append(showlistlink)
+        showlistlink.addClass("showlink")
+        showlistlink.attr('id', 'tvl'+[i])
         tvplayingnow.append(tvplayingEl);
       }
     });
@@ -457,3 +482,18 @@ $(".carousel-img").each(function () {
     displayDetailsInModal(movieId);
   });
 });
+
+
+//-----------NYT movie review API-----------------
+var NYTAPIKey = 'Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd';
+var MovieReviewTitle = 'titanic'
+function NYTreviews () {
+fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key='+NYTAPIKey)
+.then(function(response){
+  return response.json();
+})
+.then(function(data) {
+  console.log(data);
+})
+}
+NYTreviews()
