@@ -74,7 +74,9 @@ function nameSearch(event) {
                 // ----------------- Append streaming provider name to HTML ---------------------------------
                 var providerList = $("#provider-list");
                 var iconCard = $("<div class=icon-card></div>");
+                var nameCard = $("<div class=name-card></div>");
                 providerList.append(iconCard);
+                providerList.append(nameCard);
                 var providerName = $("<p id=provider-name>");
                 var iconPath =
                   "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
@@ -83,7 +85,7 @@ function nameSearch(event) {
                 iconCard.append(
                   $("<img id=provider-icon src=" + iconPath + ">")
                 );
-                iconCard.append(providerName);
+                nameCard.append(providerName);
                 // -----------------------------------------------------------------------------------------
                 // -------hide main display and show search page display -----------------------------------
                 var mainDisplay = $(".main-display");
@@ -95,12 +97,14 @@ function nameSearch(event) {
             } else if (data.results.US.rent) {
               for (let i = 0; i < data.results.US.rent.length; i++) {
                 var rentProvider = data.results.US.rent[i];
-                console.log(rentProvider);
-                console.log(rentProvider.provider_name);
+                // console.log(rentProvider);
+                // console.log(rentProvider.provider_name);
                 // ----------------- Append rental provider name to HTML ---------------------------------
                 var rentalProviderList = $("#rental-provider-list");
                 var iconCard = $("<div class=icon-card></div>");
+                var nameCard = $("<div class=name-card></div>");
                 rentalProviderList.append(iconCard);
+                rentalProviderList.append(nameCard);
                 var rentalProviderName = $("<p id=provider-name>");
                 var rentalIconPath =
                   "https://image.tmdb.org/t/p/w200" + rentProvider.logo_path;
@@ -108,7 +112,7 @@ function nameSearch(event) {
                 iconCard.append(
                   $("<img id=provider-icon src=" + rentalIconPath + ">")
                 );
-                iconCard.append(rentalProviderName);
+                nameCard.append(rentalProviderName);
                 var mainDisplay = $(".main-display");
                 var searchedDisplay = $(".searched-display");
                 mainDisplay.addClass("hide");
