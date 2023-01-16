@@ -353,6 +353,11 @@ input[type=text]:hover {
     margin: 2px;
 }
 
+.name-card {
+    display: flex;
+    flex-direction: column;
+}
+
 .provider-list,
 .rental-list {
     display: flex;
