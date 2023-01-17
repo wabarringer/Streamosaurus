@@ -394,22 +394,20 @@ function theatermovies() {
        
         playingnow.append(intheatersEl);
         var movieListBtn = document.querySelector("#tl"+[i])
-// console.log(movieListBtn)
+        // console.log(movieListBtn)
+        //-----searchfunction----------
+//         movieListBtn.onclick = movielistDisplay()
+// function movielistDisplay() {
+// var titlezone = document.querySelector("#input");
+// titlezone.innerHTML(movieListBtn)
+// console.log(titlezone)
+// }
       }
       }
     )};
 
 theatermovies();
 
-
-// movieListBtn.onclick = movielistDisplay()
-// function movielistDisplay() {
-
-// }
-// var theaterBtn = document.getElementsByClassName("theaterlink");
-// console.log(theaterBtn);
-// var button2 = $("theaterlink");
-// console.log(button2);
 
 //-----------------TV List---------------------------
 function playingshows() {
@@ -555,33 +553,15 @@ function NYTreviews() {
       console.log(data);
       var results = data.results
       console.log(results)
-// function randomresult(){
-//         var randomindex=Math.floor(Math.random()*results.length)
-//         console.log(results[randomindex]);
-//         var randomreviewheadline = results[randomindex].headline;
-//         console.log(randomreviewheadline)
-       
-//         var randomreviewTitle = result[irandomindex].display_title;
-//         console.log(randomreviewTitle)
 
-// }
-//       function randomlist() {
-//         var count = 0;
-//         while (count<5) {
-//           randomresult();
-//           count++;
-//         }  
-       
-//       }
-//       randomlist();
 for (var i=0; i<5 ; i++){
-  
-   var result = data.results[i];
-      // console.log(result);
-      // var randomresults = Math.floor(Math.random()*20)
-      // console.log(result[randomresults])
+  var Rresults = data.results
+randomresults = Math.floor(Math.random() * Rresults.length)
+console.log(randomresults)
+   var result = data.results[randomresults];
+      
       var randomreviewTitle = result.display_title;
-      // console.log(randomreviewTitle);
+      
       $("#movie-review-title"+[i]).text(randomreviewTitle);
       var randomreviewheadline = result.headline;
       $("#movie-review-headline"+[i]).text(randomreviewheadline);
