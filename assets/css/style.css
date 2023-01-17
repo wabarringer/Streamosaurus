@@ -340,7 +340,6 @@ row:after {
     margin: 10px;
     border-radius: 5px;
     color: #FEF4D7;
-   
 }
 
 .icon-card:hover .hover-text {
@@ -366,7 +365,7 @@ row:after {
 .poster {
     background: var(--bright);
     padding: 10px;
-    max-width: 100%;
+    min-width: 20%;
     border-radius: 20px;
 }
 
@@ -390,7 +389,7 @@ row:after {
     padding: 20px;
     border-radius: 20px;
     justify-content: space-evenly;
-    min-width: 75%;
+    min-width: 60%;
 }
 
 .media-name {
