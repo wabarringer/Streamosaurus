@@ -133,6 +133,15 @@ row:after {
     background: var(--bright);
 }
 
+.modal-card a {
+    color: var(--dark);
+}
+
+.modal-card a:hover {
+    background: var(--deep);
+    color: var(--light);
+}
+
 /* __________main section __________*/
 
 .carousel {
@@ -280,45 +289,6 @@ row:after {
 /*---------upper cards styling--------*/
 
 
-/*-----for showtimes section, unsure if it will be used----*/
-/* .upper-cards input[type=text] {
-    padding: 15px;
-    font-size: 15px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 0 8px 0 var(--deep);
-    transition: 0.4s;
-    width: 100%;
-    position: relative;
-    padding-right: 50px;
-}
-
-input[type=text]:hover {
-    box-shadow: 0 0 20px 0 var(--deep);
-}
-
-.upper-cards input[type=submit] {
-    background: var(--light);
-    font-size: 15px;
-    border: none;
-    padding: 15px;
-    border-radius: 20px;
-    transition: 0.4s;
-    float: right;
-    position: absolute;
-    margin-left: -50px;
-}
-
-.upper-cards input[type=submit]:hover {
-    background: var(--deep);
-    color: var(--background);
-}
-
-.showtime-results {
-    display: flex;
-    flex-direction: row;
-} */
-
 .rental-card {
     display: flex;
     flex-direction: row;
@@ -354,8 +324,7 @@ input[type=text]:hover {
 .hover-text {
     display: none;
     background-color:#640B0B;
-    font-weight: bold;
-    
+    font-weight: bold; 
     margin: 10px;
     border-radius: 5px;
     color: #FEF4D7;
@@ -412,8 +381,13 @@ input[type=text]:hover {
     max-width: 75%;
 }
 
+.media-name {
+    font-size: 30px;
+    border-bottom: 2px solid var(--dark);
+}
+
 .synopsis {
-    padding: 20px;
+    padding: 18px;
     font-size: 24px;
 }
 
