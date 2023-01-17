@@ -116,31 +116,40 @@ row:after {
 }
 
 
-/* __________main section __________*/
 
 
-.trending {
-    padding: 30px;
-    border-radius: 20px;
-    margin: 30px;
+/*-----modal style------*/
+
+.modal-card-head {
     background: var(--bright);
-    max-width: 50%;
-    position: relative;
 }
 
+.modal-card-body {
+    background: var(--background);
+    color: var(--dark);
+}
 
+.modal-card-foot {
+    background: var(--bright);
+}
+
+/* __________main section __________*/
 
 .carousel {
-    max-width: 800px;
+    max-width: 100%;
     position: relative;
-    margin: auto;
+    margin: 20px;
+    background: var(--bright);
+    padding: 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
 }
 
 .mySlides {
     display: none;
 }
 
-.prev, .next {
+/* .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -162,17 +171,7 @@ row:after {
 
 .prev:hover, .next:hover {
     background-color: #f3b2b954;
-}
-
-.text {
-    color: var(--deep);
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-}
+} */
 
 .numbertext {
     color: var(--deep);
@@ -180,9 +179,9 @@ row:after {
     padding: 8px 12px;
     position: absolute;
     top: 0;
-  }
+}
 
-.dot {
+/* .dot {
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -191,30 +190,62 @@ row:after {
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-  }
+} */
 
-  .active, .dot:hover {
+.active, .dot:hover {
     background-color: #717171;
-  }
+}
 
-  .fade {
+.fade {
     animation-name: fade;
     animation-duration: 1.5s;
-  }
+}
 
-  @keyframes fade {
+@keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
-  }
+}
 
-.main-card,
-.section-2-cards {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
+.trending {
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--bright);
+    width: auto;
+    text-align: center;
+    margin-left: ;
+}
+
+  
+  .main-card,
+  .section-2-cards {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 20px;
+      position: relative;
+    }
+
+.reviews-card {
+    width: 30%;
+    background: var(--bright);
+    border-radius: 20px;
+    padding: 20px;
+    color: var(--dark);
     margin: 20px;
-    position: relative;
+    font-size: 20px;
+}
+
+.reviews-card h2 {
+    font-size: 35px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.trending-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .section-2-cards h2 {
@@ -237,27 +268,184 @@ row:after {
 
 /*---------------searched section-----------------*/
 
-.main-card-hidden,
+.upper-cards,
 .lower-cards {
     display: flex;
     flex-direction: row;
     margin: 20px;
     position: relative;
+    justify-content: space-evenly;
 }
+
+/*---------upper cards styling--------*/
+
+
+/*-----for showtimes section, unsure if it will be used----*/
+/* .upper-cards input[type=text] {
+    padding: 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 8px 0 var(--deep);
+    transition: 0.4s;
+    width: 100%;
+    position: relative;
+    padding-right: 50px;
+}
+
+input[type=text]:hover {
+    box-shadow: 0 0 20px 0 var(--deep);
+}
+
+.upper-cards input[type=submit] {
+    background: var(--light);
+    font-size: 15px;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.4s;
+    float: right;
+    position: absolute;
+    margin-left: -50px;
+}
+
+.upper-cards input[type=submit]:hover {
+    background: var(--deep);
+    color: var(--background);
+}
+
+.showtime-results {
+    display: flex;
+    flex-direction: row;
+} */
+
+.rental-card {
+    display: flex;
+    flex-direction: row;
+}
+
+.streaming-card,
+.rental-card {
+    min-width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: var(--bright);
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--dark);
+    margin: 10px;
+}
+
+.streaming-title,
+.rental-title {
+    font-size: 20px;
+    margin: 10px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2px;
+}
+
+.hover-text {
+    display: none;
+    background-color:#640B0B;
+    font-weight: bold;
+    
+    margin: 10px;
+    border-radius: 5px;
+    color: #FEF4D7;
+   
+}
+
+.icon-card:hover .hover-text {
+    display: block;
+    position: absolute;
+}
+
+.provider-list,
+.rental-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#provider-icon {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+/*--------lower cards styling--------*/
 
 .poster {
     background: var(--bright);
-    padding: 20px;
-    max-width: 450px;
+    padding: 10px;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.poster .caption {
+    text-align: center;
+    color: var(--dark);
+    font-size: 20px;
+}
+
+.poster img {
+    border-radius: 20px;
 }
 
 .stats-card {
     background: var(--bright);
     margin: 20px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    color: var(--dark);
+    padding: 20px;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    max-width: 75%;
 }
-.cast-card h2
+
+.synopsis {
+    padding: 20px;
+    font-size: 24px;
+}
+
+.cast-card,
+.rating-card,
+.box-office-card {
+    margin: 10px;
+    text-align: center;
+    border-right: 2px solid rgba(0, 0, 0, 0.276);
+    padding-right: 9%;
+}
+
+.cast-card ul {
+    font-size: 20px;
+}
+
+.box-office-card,
+.rating-card {
+    font-size: 25px;
+}
+.cast-card h2,
+.rating-card h2,
+.box-office-card h2 {
+    font-size: 30px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.box-office-card {
+    border: none;
+    padding-right: 0;
+}
+
 
 footer {
     padding: 0;
@@ -265,6 +453,12 @@ footer {
     bottom: 0;
     size: 15px;
     text-align: center;
+}
+
+footer img {
+    float: right;
+    width: 10px;
+    height: 10px;
 }
 
 .hide {
@@ -276,19 +470,110 @@ footer {
     font-weight: bold;
     position: absolute;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #FEF4D7;
 }
 
-@media screen and (max-width: 700px) {
-
-    header {
-        display: block;
+@media screen and (max-width:950px ) {
+    .lower-cards,
+    .upper-cards {
+        flex-direction: column;
+        align-items: center;
     }
+
+    header .form {
+        width: 80%;
+    }
+
+    /* .carousel {
+        width: 50%;
+        flex-shrink: 0;
+    } */
+    
+    .trending {
+        width: auto;
+    }
+
+    .reviews-card {
+        margin: 10px;
+        width: auto;
+    }
+
+    .recent-movies-card,
+    .recent-tv-card { 
+        width: 100%;
+}
+
+@media screen and (max-width: 720px) {
+    .cast-card,
+    .rating-card,
+    .box-office-card {
+        border: none;
+    }
+
+    .main-card,
+    .section-2-cards {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .trending {
+        width: 50%;
+    }
+
+    .recent-movies-card,
+    .recent-tv-card {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
 
     .main-card,
     .section-2-cards {
         flex-direction: column;
     }
 
+    .lower-cards,
+    .upper-cards {
+        flex-direction: column;
+    }
+
+    .cast-card,
+    .rating-card,
+    .box-office-card {
+        border: none;
+    }
+
+    header .form {
+        width: 100%;
+    }
+
+    .trending {
+        width: 100%;
+    }
+
+    .main-card {
+        flex-wrap: nowrap;
+    }
+
+    .carousel {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .reviews-card {
+        width: 100%;
+    }
+
+    .recent-movies-card,
+.recent-tv-card { 
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
 }
