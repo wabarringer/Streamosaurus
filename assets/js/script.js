@@ -39,10 +39,16 @@ function nameSearch(event) {
       return response.json();
     })
     .then(function (data) {
-      //console.log(data);
+      console.log(data);
       // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
-      // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
-      // TODO: Make sure TV shows are searchable
+      // TODO: Create drop down of all results, placing selected option into search field (InputText.val)/May need to change from a drop down to a card that displays a list of the results for the user to choose from
+      console.log(data.results);
+      var searchLength = data.results.length;
+      if (searchLength > 4) {
+        searchLength = 5;
+      }
+      for (var i = 0; i < searchLength; i++) {}
+      // ------------------------------------------------------------------------------------------------
       var storedID = data.results[0].id;
       console.log(data.results);
       var requestProvider =
@@ -69,23 +75,23 @@ function nameSearch(event) {
             } else if (data.results.US.flatrate) {
               for (let i = 0; i < data.results.US.flatrate.length; i++) {
                 var streamProvider = data.results.US.flatrate[i];
-                //console.log(streamProvider);
+                console.log(streamProvider);
                 //console.log(streamProvider.provider_name);
                 // ----------------- Append streaming provider name to HTML ---------------------------------
+                // TODO: link to TMDB
                 var providerList = $("#provider-list");
                 var iconCard = $("<div class=icon-card></div>");
-                var nameCard = $("<div class=name-card></div>");
+                var hoverText = $("<div class=hover-text></div>");
                 providerList.append(iconCard);
-                providerList.append(nameCard);
-                var providerName = $("<p id=provider-name>");
+                providerList.append(hoverText);
                 var iconPath =
                   "https://image.tmdb.org/t/p/w200" + streamProvider.logo_path;
-                providerName.text(streamProvider.provider_name);
 
                 iconCard.append(
                   $("<img id=provider-icon src=" + iconPath + ">")
                 );
-                nameCard.append(providerName);
+                iconCard.append(hoverText);
+                hoverText.append(streamProvider.provider_name);
                 // -----------------------------------------------------------------------------------------
                 // -------hide main display and show search page display -----------------------------------
                 var mainDisplay = $(".main-display");
