@@ -355,10 +355,11 @@ input[type=text]:hover {
     display: none;
     background-color:#640B0B;
     font-weight: bold;
-    position: absolute;
+    
     margin: 10px;
     border-radius: 5px;
     color: #FEF4D7;
+   
 }
 
 .icon-card:hover .hover-text {
