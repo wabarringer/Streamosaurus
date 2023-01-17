@@ -29,18 +29,18 @@ function nameSearch(event) {
   var nametextsave = Inputtext.val();
 
   console.log(nametextsave);
-  fetch(
-    "https://api.themoviedb.org/3/search/movie?api_key=" +
-      APIKeyTMDB +
-      "&query=" +
-      nametextsave
-  )
+  fetch(`https://api.themoviedb.org/3/search/multi?api_key=${APIKeyTMDB}&query=${nametextsave}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
       // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
+      // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
+      
+      // display stats
+      displayDetailsInSecondPage(data);
+      
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)/May need to change from a drop down to a card that displays a list of the results for the user to choose from
       console.log(data.results);
       var searchLength = data.results.length;
@@ -50,9 +50,12 @@ function nameSearch(event) {
       for (var i = 0; i < searchLength; i++) {}
       // ------------------------------------------------------------------------------------------------
       var storedID = data.results[0].id;
+      var mediaType = data.results[0].media_type;
       console.log(data.results);
       var requestProvider =
-        "https://api.themoviedb.org/3/movie/" +
+        "https://api.themoviedb.org/3/" +
+        mediaType +
+        "/" +
         storedID +
         "/watch/providers?api_key=" +
         APIKeyTMDB;
@@ -210,10 +213,11 @@ moviereviews(); //returns reviews by folks on the TMDB site
 
 //from movie info available: poster_path, original_language, overview, release_date, vote_average
 
-function displayDetailsInModal(movieId) {
-  var requestURL =
-    "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + APIKeyTMDB;
-
+// mediaType: movie, tv, person
+// mediaTypeId: is the id of the media type above
+function displayDetailsInModal(mediaType, mediaTypeId) {
+  var requestURL = `https://api.themoviedb.org/3/${mediaType}/${mediaTypeId}?api_key=${APIKeyTMDB}`;
+  console.log(mediaType, mediaTypeId)
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -241,6 +245,50 @@ function displayDetailsInModal(movieId) {
       $("#vote-avg").text(data.vote_average);
     });
 }
+
+// mediaType: movie, tv, person
+// mediaTypeId: is the id of the media type above
+function getCredits(mediaType, mediaTypeId) {
+  var requestURL = `https://api.themoviedb.org/3/${mediaType}/${mediaTypeId}/credits?api_key=${APIKeyTMDB}`;
+  console.log("hello", `mediaType:${mediaType}`, `mediaTypeId:${mediaTypeId}`, requestURL)
+  fetch(requestURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var castNames = data.cast.slice(0,8).map(castMember => castMember.name); // array of names
+      $(".searched-display").find(".cast-card").find("li").each((elementIndex, liEl) => {
+        $(liEl).text(castNames[elementIndex])
+      })
+    });
+}
+
+
+function displayDetailsInSecondPage(data) {
+  var firstResult = data.results[0];
+  $(".searched-display")
+    .find("img")
+    .attr(
+      "src",
+      "https://www.themoviedb.org/t/p/w500" + firstResult.poster_path
+    );
+  $(".searched-display").find(".synopsis").text(firstResult.overview);
+  $(".searched-display").find(".caption").text(firstResult.vote_average);
+  $(".searched-display").find("#box-office").text(firstResult.release_date);
+  console.log("hello world", firstResult);
+  getCredits(firstResult.media_type, firstResult.id);
+  $(".searched-display")
+    .find(".stats-card")
+    .find(".media-name")
+    .text(firstResult.original_name);
+
+  if (firstResult.original_name == ".media-name") {
+    $(".searched-display").find(".stats-card").find(".media-name").text(firstResult.original_name);
+  } else {
+    $(".searched-display").find(".stats-card").find(".media-name").text(firstResult.original_title);
+  }
+}
+
 
 //-----------------slideshow js-------------------
 let slideIndex = 0;
@@ -273,7 +321,6 @@ function topmovies() {
     .then(function (data) {
       for (let i = 0; i < data.results.length; i++) {
         var topMovieList = data.results[i].title;
-        // console.log(topMovieList);
         var topMovieListInput = $("#top-movie-list");
         var movielistEl = $("<li>");
         var movielistLink = $("<a>");
@@ -448,10 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //-------------API to populate the carousel -----------------------------
 function displayTopFive() {
-  var requesttop =
-    "https://api.themoviedb.org/3//movie/now_playing?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US&page=1";
+  var requesttop = `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKeyTMDB}&language=en-US&page=1`;
   fetch(requesttop)
     .then(function (response) {
       return response.json();
@@ -466,48 +510,17 @@ function displayTopFive() {
           "https://www.themoviedb.org/t/p/w500" + data.results[i].poster_path;
         var currentImg = $(carouselList[i]);
         currentImg.attr("src", posterPath);
-        currentImg.attr("movieId", movieId);
+        currentImg.attr("mediaType", "movie") // we hardcode to movie because this top 5 from now playing only supports movies
+        currentImg.attr("mediaTypeId", movieId)
       }
     });
 }
 displayTopFive();
 
 //--------------------click events to carousel-----------------------------------------
-$(".carousel-img").each(function () {
-  var currentImg = $(this);
-  currentImg.click(() => {
-    var movieId = currentImg.attr("movieId");
-    displayDetailsInModal(movieId);
-  });
-});
+$(".carousel-img").each((i, currentImg) => {
+  $(currentImg).click(() => { 
+    displayDetailsInModal($(currentImg).attr("mediaType"), $(currentImg).attr("mediaTypeId"));
+  })
+})
 
-//-----------NYT movie review API-----------------
-var NYTAPIKey = "Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd";
-var MovieReviewTitle = "titanic";
-function NYTreviews() {
-  fetch(
-    "https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key=" +
-      NYTAPIKey
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-
-      var result = data.results[Math.floor(Math.random() * 20)];
-      console.log(result);
-      var randomreviewTitle = result.display_title;
-      console.log(randomreviewTitle);
-      $("#movie-review-title").text(randomreviewTitle);
-      var randomreviewheadline = result.headline;
-      console.log(randomreviewheadline);
-      $("#movie-review-headline").text(randomreviewheadline);
-      var reviewlink = result.link.url;
-      var reviewlinkhref = $("#review-link");
-      console.log(reviewlink);
-      reviewlinkhref.href = reviewlink;
-      // console.log(reviewcontent.a.hr)
-    });
-}
-NYTreviews();
