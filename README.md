@@ -35,7 +35,9 @@ A web site tool that allows you to find where your a specific movie or tv show i
 
 - In the search bar on the top of the page you can enter in the movie or show you are looking for and click "Go". The site will then take you to a page where it will list all of the streaming services and/or rental providers where you selection can be watched. You'll also see a section showing the poster, synopsis, cast, release date and audience rating.
 
-  ![screenshot of web site](assets/images/srceen-cap01.PNG)
+ 
+  <img width="1290" alt="Screen Shot 2023-01-17 at 12 02 56 PM" src="https://user-images.githubusercontent.com/116858582/213000225-9785029c-6324-419c-9816-98d72d76027d.png">
+
 
 ## Credits
 
