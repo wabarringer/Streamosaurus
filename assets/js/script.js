@@ -108,17 +108,17 @@ function nameSearch(event) {
                 // ----------------- Append rental provider name to HTML ---------------------------------
                 var rentalProviderList = $("#rental-provider-list");
                 var iconCard = $("<div class=icon-card></div>");
-                var nameCard = $("<div class=name-card></div>");
+                var hoverText = $("<div class=hover-text></div>");
                 rentalProviderList.append(iconCard);
-                rentalProviderList.append(nameCard);
-                var rentalProviderName = $("<p id=provider-name>");
+                rentalProviderList.append(hoverText);
                 var rentalIconPath =
                   "https://image.tmdb.org/t/p/w200" + rentProvider.logo_path;
-                rentalProviderName.text(rentProvider.provider_name);
+
                 iconCard.append(
                   $("<img id=provider-icon src=" + rentalIconPath + ">")
                 );
-                nameCard.append(rentalProviderName);
+                iconCard.append(hoverText);
+                hoverText.append(rentProvider.provider_name);
                 var mainDisplay = $(".main-display");
                 var searchedDisplay = $(".searched-display");
                 mainDisplay.addClass("hide");
@@ -271,7 +271,6 @@ function topmovies() {
       return response.json();
     })
     .then(function (data) {
-     
       for (let i = 0; i < data.results.length; i++) {
         var topMovieList = data.results[i].title;
         // console.log(topMovieList);
@@ -280,8 +279,8 @@ function topmovies() {
         var movielistLink = $("<a>");
         movielistLink.text(topMovieList);
         movielistEl.append(movielistLink);
-        movielistLink.addClass("listlink")
-        movielistLink.attr('id', 'ml'+[i])
+        movielistLink.addClass("listlink");
+        movielistLink.attr("id", "ml" + [i]);
         // movielistEl.text(topMovieList);
 
         topMovieListInput.append(movielistEl);
@@ -307,11 +306,11 @@ function topshows() {
         //console.log(toptvList);
         var toptvListInput = $("#top-tv-list");
         var tvlistEl = $("<li>");
-        var showlistlink = $("<a>")
-        showlistlink.text(toptvList)
-        tvlistEl.append(showlistlink)
-        showlistlink.addClass("topshowlink")
-        showlistlink.attr('id', 'tsl'+[i])
+        var showlistlink = $("<a>");
+        showlistlink.text(toptvList);
+        tvlistEl.append(showlistlink);
+        showlistlink.addClass("topshowlink");
+        showlistlink.attr("id", "tsl" + [i]);
         // tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
       }
@@ -336,11 +335,11 @@ function theatermovies() {
         // console.log(playingmovies);
         var playingnow = $("#in-theaters");
         var intheatersEl = $("<li>");
-        var theaterlistlink = $("<a>")
-        theaterlistlink.text(playingmovies)
-        intheatersEl.append(theaterlistlink)
-        theaterlistlink.addClass("theaterlink")
-        theaterlistlink.attr('id', 'tl'+[i])
+        var theaterlistlink = $("<a>");
+        theaterlistlink.text(playingmovies);
+        intheatersEl.append(theaterlistlink);
+        theaterlistlink.addClass("theaterlink");
+        theaterlistlink.attr("id", "tl" + [i]);
         // intheatersEl.text(playingmovies);
         playingnow.append(intheatersEl);
       }
@@ -348,11 +347,10 @@ function theatermovies() {
 }
 theatermovies();
 
-var theaterBtn = document.getElementsByClassName('theaterlink')
-console.log(theaterBtn)
-var button2 = $("theaterlink")
-console.log(button2)
-
+var theaterBtn = document.getElementsByClassName("theaterlink");
+console.log(theaterBtn);
+var button2 = $("theaterlink");
+console.log(button2);
 
 //-----------------TV List---------------------------
 function playingshows() {
@@ -372,11 +370,11 @@ function playingshows() {
         // console.log(playingshows);
         var tvplayingnow = $("#in-tv");
         var tvplayingEl = $("<li>");
-        var showlistlink = $("<a>")
-        showlistlink.text(playingshows)
-        tvplayingEl.append(showlistlink)
-        showlistlink.addClass("showlink")
-        showlistlink.attr('id', 'tvl'+[i])
+        var showlistlink = $("<a>");
+        showlistlink.text(playingshows);
+        tvplayingEl.append(showlistlink);
+        showlistlink.addClass("showlink");
+        showlistlink.attr("id", "tvl" + [i]);
         tvplayingnow.append(tvplayingEl);
       }
     });
@@ -483,31 +481,33 @@ $(".carousel-img").each(function () {
   });
 });
 
-
 //-----------NYT movie review API-----------------
-var NYTAPIKey = 'Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd';
-var MovieReviewTitle = 'titanic'
-function NYTreviews () {
-fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key='+NYTAPIKey)
-.then(function(response){
-  return response.json();
-})
-.then(function(data) {
-  console.log(data);
+var NYTAPIKey = "Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd";
+var MovieReviewTitle = "titanic";
+function NYTreviews() {
+  fetch(
+    "https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key=" +
+      NYTAPIKey
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
 
-    var result = data.results[Math.floor(Math.random()*20)]
-    console.log(result)
-  var randomreviewTitle = result.display_title
-  console.log(randomreviewTitle)
-  $('#movie-review-title').text(randomreviewTitle)
-  var randomreviewheadline = result.headline
-  console.log(randomreviewheadline)
-  $('#movie-review-headline').text(randomreviewheadline)
-var reviewlink = result.link.url
-var reviewlinkhref= $('#review-link')
-console.log(reviewlink)
-reviewlinkhref.href = reviewlink
-// console.log(reviewcontent.a.hr)
-})
+      var result = data.results[Math.floor(Math.random() * 20)];
+      console.log(result);
+      var randomreviewTitle = result.display_title;
+      console.log(randomreviewTitle);
+      $("#movie-review-title").text(randomreviewTitle);
+      var randomreviewheadline = result.headline;
+      console.log(randomreviewheadline);
+      $("#movie-review-headline").text(randomreviewheadline);
+      var reviewlink = result.link.url;
+      var reviewlinkhref = $("#review-link");
+      console.log(reviewlink);
+      reviewlinkhref.href = reviewlink;
+      // console.log(reviewcontent.a.hr)
+    });
 }
-NYTreviews()
+NYTreviews();
