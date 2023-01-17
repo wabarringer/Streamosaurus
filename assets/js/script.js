@@ -29,7 +29,9 @@ function nameSearch(event) {
   var nametextsave = Inputtext.val();
 
   console.log(nametextsave);
-  fetch(`https://api.themoviedb.org/3/search/multi?api_key=${APIKeyTMDB}&query=${nametextsave}`)
+  fetch(
+    `https://api.themoviedb.org/3/search/multi?api_key=${APIKeyTMDB}&query=${nametextsave}`
+  )
     .then(function (response) {
       return response.json();
     })
@@ -37,10 +39,10 @@ function nameSearch(event) {
       console.log(data);
       // EDGE CASE: Movie or show doesn't exist in database (doesn't have an ID), give message "could not find"
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)
-      
+
       // display stats
       displayDetailsInSecondPage(data);
-      
+
       // TODO: Create drop down of all results, placing selected option into search field (InputText.val)/May need to change from a drop down to a card that displays a list of the results for the user to choose from
       console.log(data.results);
       var searchLength = data.results.length;
@@ -99,8 +101,10 @@ function nameSearch(event) {
                 // -------hide main display and show search page display -----------------------------------
                 var mainDisplay = $(".main-display");
                 var searchedDisplay = $(".searched-display");
+                var newReleases = $("#new-releases");
                 mainDisplay.addClass("hide");
                 searchedDisplay.removeClass("hide");
+                newReleases.addClass("hide");
                 // -----------------------------------------------------------------------------------------
               }
             } else if (data.results.US.rent) {
@@ -124,8 +128,10 @@ function nameSearch(event) {
                 hoverText.append(rentProvider.provider_name);
                 var mainDisplay = $(".main-display");
                 var searchedDisplay = $(".searched-display");
+                var newReleases = $("#new-releases");
                 mainDisplay.addClass("hide");
                 searchedDisplay.removeClass("hide");
+                newReleases.addClass("hide");
               }
             } else {
               // ------- create message text on interval timer ---------------------------------------------
@@ -217,7 +223,7 @@ moviereviews(); //returns reviews by folks on the TMDB site
 // mediaTypeId: is the id of the media type above
 function displayDetailsInModal(mediaType, mediaTypeId) {
   var requestURL = `https://api.themoviedb.org/3/${mediaType}/${mediaTypeId}?api_key=${APIKeyTMDB}`;
-  console.log(mediaType, mediaTypeId)
+  console.log(mediaType, mediaTypeId);
   fetch(requestURL)
     .then(function (response) {
       return response.json();
@@ -250,19 +256,28 @@ function displayDetailsInModal(mediaType, mediaTypeId) {
 // mediaTypeId: is the id of the media type above
 function getCredits(mediaType, mediaTypeId) {
   var requestURL = `https://api.themoviedb.org/3/${mediaType}/${mediaTypeId}/credits?api_key=${APIKeyTMDB}`;
-  console.log("hello", `mediaType:${mediaType}`, `mediaTypeId:${mediaTypeId}`, requestURL)
+  console.log(
+    "hello",
+    `mediaType:${mediaType}`,
+    `mediaTypeId:${mediaTypeId}`,
+    requestURL
+  );
   fetch(requestURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      var castNames = data.cast.slice(0,8).map(castMember => castMember.name); // array of names
-      $(".searched-display").find(".cast-card").find("li").each((elementIndex, liEl) => {
-        $(liEl).text(castNames[elementIndex])
-      })
+      var castNames = data.cast
+        .slice(0, 8)
+        .map((castMember) => castMember.name); // array of names
+      $(".searched-display")
+        .find(".cast-card")
+        .find("li")
+        .each((elementIndex, liEl) => {
+          $(liEl).text(castNames[elementIndex]);
+        });
     });
 }
-
 
 function displayDetailsInSecondPage(data) {
   var firstResult = data.results[0];
@@ -283,12 +298,17 @@ function displayDetailsInSecondPage(data) {
     .text(firstResult.original_name);
 
   if (firstResult.original_name == ".media-name") {
-    $(".searched-display").find(".stats-card").find(".media-name").text(firstResult.original_name);
+    $(".searched-display")
+      .find(".stats-card")
+      .find(".media-name")
+      .text(firstResult.original_name);
   } else {
-    $(".searched-display").find(".stats-card").find(".media-name").text(firstResult.original_title);
+    $(".searched-display")
+      .find(".stats-card")
+      .find(".media-name")
+      .text(firstResult.original_title);
   }
 }
-
 
 //-----------------slideshow js-------------------
 let slideIndex = 0;
@@ -510,8 +530,8 @@ function displayTopFive() {
           "https://www.themoviedb.org/t/p/w500" + data.results[i].poster_path;
         var currentImg = $(carouselList[i]);
         currentImg.attr("src", posterPath);
-        currentImg.attr("mediaType", "movie") // we hardcode to movie because this top 5 from now playing only supports movies
-        currentImg.attr("mediaTypeId", movieId)
+        currentImg.attr("mediaType", "movie"); // we hardcode to movie because this top 5 from now playing only supports movies
+        currentImg.attr("mediaTypeId", movieId);
       }
     });
 }
@@ -519,8 +539,10 @@ displayTopFive();
 
 //--------------------click events to carousel-----------------------------------------
 $(".carousel-img").each((i, currentImg) => {
-  $(currentImg).click(() => { 
-    displayDetailsInModal($(currentImg).attr("mediaType"), $(currentImg).attr("mediaTypeId"));
-  })
-})
-
+  $(currentImg).click(() => {
+    displayDetailsInModal(
+      $(currentImg).attr("mediaType"),
+      $(currentImg).attr("mediaTypeId")
+    );
+  });
+});
