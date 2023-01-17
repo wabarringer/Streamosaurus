@@ -135,22 +135,6 @@ row:after {
 
 /* __________main section __________*/
 
-
-
-
-.trending {
-    padding: 30px;
-    border-radius: 20px;
-    background: var(--bright);
-    width: 30%;
-    position: relative;
-    text-align: center;
-}
-
-
-
-
-
 .carousel {
     max-width: 100%;
     position: relative;
@@ -205,7 +189,7 @@ row:after {
     padding: 8px 12px;
     position: absolute;
     top: 0;
-  }
+}
 
 .dot {
     cursor: pointer;
@@ -216,38 +200,62 @@ row:after {
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-  }
-
-  .active, .dot:hover {
-    background-color: #717171;
-  }
-
-  .fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-
-
-
-
-.main-card,
-.section-2-cards {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 20px;
-    position: relative;
 }
 
-.main-card {
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+.trending {
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--bright);
+    width: auto;
+    text-align: center;
+    margin-left: ;
+}
+
+  
+  .main-card,
+  .section-2-cards {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 20px;
+      position: relative;
+    }
+
+.reviews-card {
+    width: 30%;
+    background: var(--bright);
+    border-radius: 20px;
+    padding: 20px;
+    color: var(--dark);
+    margin: 20px;
+    font-size: 20px;
+}
+
+.reviews-card h2 {
+    font-size: 35px;
+    border-bottom: 2px solid var(--dark);
+}
+
+.trending-wrapper {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .section-2-cards h2 {
@@ -467,14 +475,23 @@ footer img {
         width: 80%;
     }
 
-    .carousel {
+    /* .carousel {
         width: 50%;
         flex-shrink: 0;
-    }
+    } */
     
     .trending {
-        width: 50%;
+        width: auto;
     }
+
+    .reviews-card {
+        margin: 10px;
+        width: auto;
+    }
+
+    .recent-movies-card,
+    .recent-tv-card { 
+        width: 100%;
 }
 
 @media screen and (max-width: 720px) {
@@ -494,9 +511,12 @@ footer img {
         width: 50%;
     }
 
-    /* .carousel {
-        width: 80%;
-    } */
+    .recent-movies-card,
+    .recent-tv-card {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
 
 }
 
@@ -532,5 +552,18 @@ footer img {
 
     .carousel {
         width: 100%;
+        margin: 0;
+        margin-top: 20px;
     }
+
+    .reviews-card {
+        width: 100%;
+    }
+
+    .recent-movies-card,
+.recent-tv-card { 
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+}
 }
