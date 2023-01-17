@@ -149,7 +149,7 @@ row:after {
     display: none;
 }
 
-.prev, .next {
+/* .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -171,17 +171,7 @@ row:after {
 
 .prev:hover, .next:hover {
     background-color: #f3b2b954;
-}
-
-.text {
-    color: var(--deep);
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-}
+} */
 
 .numbertext {
     color: var(--deep);
@@ -191,7 +181,7 @@ row:after {
     top: 0;
 }
 
-.dot {
+/* .dot {
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -200,7 +190,7 @@ row:after {
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
-}
+} */
 
 .active, .dot:hover {
     background-color: #717171;
@@ -424,7 +414,7 @@ input[type=text]:hover {
 
 .synopsis {
     padding: 20px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .cast-card,
@@ -434,6 +424,10 @@ input[type=text]:hover {
     text-align: center;
     border-right: 2px solid rgba(0, 0, 0, 0.276);
     padding-right: 9%;
+}
+
+.cast-card ul {
+    font-size: 20px;
 }
 
 .box-office-card,
