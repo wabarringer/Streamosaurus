@@ -423,7 +423,7 @@ input[type=text]:hover {
 
 .synopsis {
     padding: 20px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .cast-card,
@@ -433,6 +433,10 @@ input[type=text]:hover {
     text-align: center;
     border-right: 2px solid rgba(0, 0, 0, 0.276);
     padding-right: 9%;
+}
+
+.cast-card ul {
+    font-size: 20px;
 }
 
 .box-office-card,
