@@ -331,6 +331,8 @@ function topmovies() {
         // movielistEl.text(topMovieList);
 
         topMovieListInput.append(movielistEl);
+        var topMovieListBtn = document.querySelector("#ml"+[i])
+        // console.log(topMovieListBtn)
       }
     });
 }
@@ -360,6 +362,8 @@ function topshows() {
         showlistlink.attr("id", "tsl" + [i]);
         // tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
+        var toptvListBtn = document.querySelector("#tsl"+[i])
+        // console.log(toptvListBtn)
       }
     });
 }
@@ -387,17 +391,25 @@ function theatermovies() {
         intheatersEl.append(theaterlistlink);
         theaterlistlink.addClass("theaterlink");
         theaterlistlink.attr("id", "tl" + [i]);
-        // intheatersEl.text(playingmovies);
+       
         playingnow.append(intheatersEl);
+        var movieListBtn = document.querySelector("#tl"+[i])
+// console.log(movieListBtn)
       }
-    });
-}
+      }
+    )};
+
 theatermovies();
 
-var theaterBtn = document.getElementsByClassName("theaterlink");
-console.log(theaterBtn);
-var button2 = $("theaterlink");
-console.log(button2);
+
+// movieListBtn.onclick = movielistDisplay()
+// function movielistDisplay() {
+
+// }
+// var theaterBtn = document.getElementsByClassName("theaterlink");
+// console.log(theaterBtn);
+// var button2 = $("theaterlink");
+// console.log(button2);
 
 //-----------------TV List---------------------------
 function playingshows() {
@@ -423,6 +435,8 @@ function playingshows() {
         showlistlink.addClass("showlink");
         showlistlink.attr("id", "tvl" + [i]);
         tvplayingnow.append(tvplayingEl);
+        var tvListBtn = document.querySelector("#tvl"+[i])
+        // console.log(tvListBtn)
       }
     });
 }
@@ -519,8 +533,64 @@ displayTopFive();
 
 //--------------------click events to carousel-----------------------------------------
 $(".carousel-img").each((i, currentImg) => {
+
   $(currentImg).click(() => { 
+
     displayDetailsInModal($(currentImg).attr("mediaType"), $(currentImg).attr("mediaTypeId"));
   })
 })
 
+//-----------NYT movie review API-----------------
+var NYTAPIKey = "Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd";
+var MovieReviewTitle = "titanic";
+function NYTreviews() {
+  fetch(
+    "https://api.nytimes.com/svc/movies/v2/reviews/picks.json?query=&api-key=" +
+      NYTAPIKey
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var results = data.results
+      console.log(results)
+// function randomresult(){
+//         var randomindex=Math.floor(Math.random()*results.length)
+//         console.log(results[randomindex]);
+//         var randomreviewheadline = results[randomindex].headline;
+//         console.log(randomreviewheadline)
+       
+//         var randomreviewTitle = result[irandomindex].display_title;
+//         console.log(randomreviewTitle)
+
+// }
+//       function randomlist() {
+//         var count = 0;
+//         while (count<5) {
+//           randomresult();
+//           count++;
+//         }  
+       
+//       }
+//       randomlist();
+for (var i=0; i<5 ; i++){
+  
+   var result = data.results[i];
+      // console.log(result);
+      // var randomresults = Math.floor(Math.random()*20)
+      // console.log(result[randomresults])
+      var randomreviewTitle = result.display_title;
+      // console.log(randomreviewTitle);
+      $("#movie-review-title"+[i]).text(randomreviewTitle);
+      var randomreviewheadline = result.headline;
+      $("#movie-review-headline"+[i]).text(randomreviewheadline);
+      var reviewlink = result.link.url;
+   
+      document.querySelector('#review-link'+[i]).innerHTML = '<a target=_blank href="' + reviewlink + '">Read the New York Times review</a>'
+   
+}
+    
+    });
+}
+NYTreviews();
