@@ -148,76 +148,7 @@ function nameSearch(event) {
 }
 goBtn.on("click", nameSearch);
 
-//Fetch Trending Movies or tv -----------------------------------------------------------------
-
-function gettrendingAPI() {
-  var requestTrendingURL =
-    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
-
-  fetch(requestTrendingURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-      var top5 = data.results;
-    }); //returns 20 pages; could do results 1-5
-}
-gettrendingAPI();
-
-//Fetches movie by ID to see watch providers ---------------------------------------------------
-function watchproviders() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestprovider =
-    "https://api.themoviedb.org/3/movie/12/watch/providers?api_key=" +
-    APIKeyTMDB;
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-watchproviders();
-
-//Fetch Recent movies for movie list on front page-----------------------------------------------
-function recentmovies() {
-  var requestrecent =
-    "https://api.themoviedb.org/3/movie/latest?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US";
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-
-function moviereviews() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestreviews =
-    "https://api.themoviedb.org/3/movie/12/reviews?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US&page=1";
-  fetch(requestreviews)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-moviereviews(); //returns reviews by folks on the TMDB site
-//if results=none, display text = unable to stream this movie, option to input zip code for Theater
-
-//What do do when the movie has multiple results?
-
-//from movie info available: poster_path, original_language, overview, release_date, vote_average
+//--------------------------------------------
 
 // mediaType: movie, tv, person
 // mediaTypeId: is the id of the media type above
@@ -351,6 +282,8 @@ function topmovies() {
         // movielistEl.text(topMovieList);
 
         topMovieListInput.append(movielistEl);
+        var topMovieListBtn = document.querySelector("#ml" + [i]);
+        // console.log(topMovieListBtn)
       }
     });
 }
@@ -380,6 +313,8 @@ function topshows() {
         showlistlink.attr("id", "tsl" + [i]);
         // tvlistEl.text(toptvList);
         toptvListInput.append(tvlistEl);
+        var toptvListBtn = document.querySelector("#tsl" + [i]);
+        // console.log(toptvListBtn)
       }
     });
 }
@@ -407,17 +342,22 @@ function theatermovies() {
         intheatersEl.append(theaterlistlink);
         theaterlistlink.addClass("theaterlink");
         theaterlistlink.attr("id", "tl" + [i]);
-        // intheatersEl.text(playingmovies);
+
         playingnow.append(intheatersEl);
+        var movieListBtn = document.querySelector("#tl" + [i]);
+        // console.log(movieListBtn)
+        //-----searchfunction----------
+        //         movieListBtn.onclick = movielistDisplay()
+        // function movielistDisplay() {
+        // var titlezone = document.querySelector("#input");
+        // titlezone.innerHTML(movieListBtn)
+        // console.log(titlezone)
+        // }
       }
     });
 }
-theatermovies();
 
-var theaterBtn = document.getElementsByClassName("theaterlink");
-console.log(theaterBtn);
-var button2 = $("theaterlink");
-console.log(button2);
+theatermovies();
 
 //-----------------TV List---------------------------
 function playingshows() {
@@ -443,25 +383,13 @@ function playingshows() {
         showlistlink.addClass("showlink");
         showlistlink.attr("id", "tvl" + [i]);
         tvplayingnow.append(tvplayingEl);
+        var tvListBtn = document.querySelector("#tvl" + [i]);
+        // console.log(tvListBtn)
       }
     });
 }
 playingshows();
 
-//------------------trending movie images --------------------------------------
-function trendingposter() {
-  var trendingmov =
-    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
-
-  fetch(trendingmov)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
-trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
@@ -546,3 +474,41 @@ $(".carousel-img").each((i, currentImg) => {
     );
   });
 });
+
+//-----------NYT movie review API-----------------
+var NYTAPIKey = "Y3E9vxQnYCgWQgY9WvZxMJfImd22qaxd";
+var MovieReviewTitle = "titanic";
+function NYTreviews() {
+  fetch(
+    "https://api.nytimes.com/svc/movies/v2/reviews/picks.json?query=&api-key=" +
+      NYTAPIKey
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var results = data.results;
+      console.log(results);
+
+      for (var i = 0; i < 5; i++) {
+        var Rresults = data.results;
+        randomresults = Math.floor(Math.random() * Rresults.length);
+        console.log(randomresults);
+        var result = data.results[randomresults];
+
+        var randomreviewTitle = result.display_title;
+
+        $("#movie-review-title" + [i]).text(randomreviewTitle);
+        var randomreviewheadline = result.headline;
+        $("#movie-review-headline" + [i]).text(randomreviewheadline);
+        var reviewlink = result.link.url;
+
+        document.querySelector("#review-link" + [i]).innerHTML =
+          '<a target=_blank href="' +
+          reviewlink +
+          '">Read the New York Times review</a>';
+      }
+    });
+}
+NYTreviews();

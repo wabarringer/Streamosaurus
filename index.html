@@ -32,7 +32,9 @@
   <body>
     <header>
       <div class="header-container">
-        <img src="./assets/images/dino.png" />
+        <a class="dino-reload" href="javascript:location.reload(true)">
+          <img src="./assets/images/dino.png">
+      </a>
         <h1>Streamosaurus</h1>
       </div>
       <div class="form">
@@ -113,22 +115,26 @@
             </div>
             </div>
             <div class="reviews-card">
-              <h2>Critics Review of: <span id='movie-review-title'></span></h2>
+              
+              <h2>Critics' Picks: </br><span id='movie-review-title0'></span></h2>
               <div class="review-content">
-                  <p><span id='movie-review-headline'></span></p>
-                  <a id="#review-link">Read the New York Times Review</a>
+                  <p><span id='movie-review-headline0'></span></p>
+                  <span id="review-link0"><a>Read the New York Times Review</a></span>
               </div>
-              <h2>Random Review:</h2>
+              <h2><span id='movie-review-title1'></span></h2>
               <div class="review-content">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi facere voluptatum repellat doloremque sit temporibus obcaecati aliquid, ut recusandae fuga.</p>
+                  <p><span id='movie-review-headline1'></span></p>
+                  <span id="review-link1"><a>Read the New York Times Review</a></span>
               </div>
-              <h2>Random Review:</h2>
+              <h2><span id='movie-review-title2'></span></h2>
               <div class="review-content">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi facere voluptatum repellat doloremque sit temporibus obcaecati aliquid, ut recusandae fuga.</p>
+                  <p><span id='movie-review-headline2'></span></p>
+                  <span id="review-link2"><a>Read the New York Times Review</a></span>
               </div>
-              <h2>Random Review:</h2>
+              <h2><span id='movie-review-title3'></span></h2>
               <div class="review-content">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi facere voluptatum repellat doloremque sit temporibus obcaecati aliquid, ut recusandae fuga.</p>
+                  <p><span id='movie-review-headline3'></span></p>
+                  <span id="review-link3"><a>Read the New York Times Review</a></span>
               </div>
             </div>
         </div>
@@ -157,33 +163,11 @@
           <!--reviews will be caption on poster-->
           
           <div class="upper-cards">
-              <!-- <div class="showtimes-card">
-                  <div class="form">
-                      <form>
-                              <input
-                              id="input"
-                              type="text"
-                              placeholder="Enter ZIP code..."
-                              name="search"
-                              />
-                              <input type="submit" id="go-button" value="Go" />
-                        </form>
-                        <div class="showtime-results">
-                        </div>
-                    </div>
-                    <!-add in form, button and ul div for showtimes after zipcode input->
-                </div> -->
                 
                 <div class="streaming-card">
                     <p class="streaming-title">Streaming on:</p>
                     <div class="provider-list" id="provider-list">
-                        <!-- <div class="icon-card">
-                            <img id="provider-icon" src="https://image.tmdb.org/t/p/w200/7rwgEs15tFwyR9NPQ5vpzxTj19Q.jpg">
-                            <p id="provider-name">Disney Plus</p>
-                        </div> -->
-                        <!-- insert streaming icons -->
                     </div>
-                    <!--create <img> with a source with the image id-->
                 </div>
 
 
@@ -202,7 +186,7 @@
                     <img
                       src="https://www.defining.co/wp-content/uploads/2022/09/image_24fc0a3c-4653-4ff2-aac1-24012fe42911.jpg"
                     />
-                    <div class="caption">Rated 9/10</div>
+                    <!-- <div class="caption">Rated 9/10</div> -->
                   </div>
         
                 <div class="stats-card">
@@ -210,19 +194,19 @@
                     <p class="media-name">Lorem ipsum dolor</p>
                   </div>
                     <div class="synopsis-card">
-                        <p class="synopsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia excepturi expedita veniam repellat ipsa amet voluptas, iure quaerat laborum dolorem ducimus, alias cumque dignissimos perferendis. Labore quod perferendis nihil vel exercitationem blanditiis commodi in omnis odit. Tempore hic tempora dolore nemo ut expedita delectus similique, facilis porro ratione corporis ullam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet nisi voluptatum error molestiae modi pariatur, cumque quod debitis maiores, dolores omnis quisquam! Praesentium modi dolor quam animi facere dolorem natus asperiores reprehenderit odio assumenda, aperiam voluptate excepturi explicabo aliquam enim ex quae quia consectetur soluta eos consequuntur architecto. Quod.</p>
+                        <p class="synopsis"></p>
                     </div>
                     <div class="cast-card">
                         <h2>Cast:</h2>
                         <ul>
-                            <li>Norman Reedus as Daryl Dixon</li>
-                            <li>Andrew Lincoln as Rick Grimes</li>
-                            <li>Chandler Riggs as Carl Grimed</li>
-                            <li>Lauren Cohen as Maggie Rhee</li>
-                            <li>Steven Yeun as Glenn Rhee</li>
-                            <li>Melissa McBride as Carol Peletier</li>
-                            <li>Danai Gurira as Michonne</li>
-                            <li>Jeffrey Dean Morgan as Negan Smith</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
                             <!--list 8 cast members-->
                         </ul>
                     </div>
@@ -234,7 +218,7 @@
         
                     <div class="box-office-card">
                         <h2>Release Date:</h2>
-                        <p id="box-office">603,108</p>
+                        <p id="box-office"></p>
                     </div>
         
                 </div>
@@ -276,12 +260,12 @@
             <lu>
             <div  class="media-content">
                 
-              <p id="movie-title" class="title is-4">Avatar: The Way of Water</p>
-              <p id="release-date" class="release-date">(2022)</p>
-              <p id="originallanguage" class="original-language">EN</p>
-              <p id="rated" class="rate">PG-13</p>
-              <p id="genres" class="genre">drama</p>
-              <p id="overview" class="overview">In the ravaged near future, a savage motorcycle gang rules the road. Terrorizing innocent civilians while tearing up the streets, the ruthless gang laughs in the face ofa police force hell-bent on stopping them.</p>
+              <p id="movie-title" class="title is-4"></p>
+              <p id="release-date" class="release-date"></p>
+              <p id="originallanguage" class="original-language"></p>
+              <!-- <p id="rated" class="rate"></p> -->
+              <p id="genres" class="genre"></p>
+              <p id="overview" class="overview"></p>
               <p id="vote-avg" class="vote-avg">10</p>
             </div>
             </lu>
@@ -293,7 +277,7 @@
       <!-- Your content -->
     </div>
   </div>
-
+  
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
 
@@ -322,7 +306,7 @@
           </footer>
           </div>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
+     
     </div>
 
     <div id="modal-TV" class="modal">
@@ -341,7 +325,7 @@
           </footer>
           </div>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
+  
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

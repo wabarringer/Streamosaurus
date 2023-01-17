@@ -76,6 +76,12 @@ header .form {
     width: 40%;
 }
 
+.dino-reload {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    font-weight: normal;
+}
 
 header input[type=text] {
     padding: 15px;
@@ -131,6 +137,15 @@ row:after {
 
 .modal-card-foot {
     background: var(--bright);
+}
+
+.modal-card a {
+    color: var(--dark);
+}
+
+.modal-card a:hover {
+    background: var(--deep);
+    color: var(--light);
 }
 
 /* __________main section __________*/
@@ -277,47 +292,12 @@ row:after {
     justify-content: space-evenly;
 }
 
+.lower-cards {
+    align-items: center;
+}
+
 /*---------upper cards styling--------*/
 
-
-/*-----for showtimes section, unsure if it will be used----*/
-/* .upper-cards input[type=text] {
-    padding: 15px;
-    font-size: 15px;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 0 8px 0 var(--deep);
-    transition: 0.4s;
-    width: 100%;
-    position: relative;
-    padding-right: 50px;
-}
-
-input[type=text]:hover {
-    box-shadow: 0 0 20px 0 var(--deep);
-}
-
-.upper-cards input[type=submit] {
-    background: var(--light);
-    font-size: 15px;
-    border: none;
-    padding: 15px;
-    border-radius: 20px;
-    transition: 0.4s;
-    float: right;
-    position: absolute;
-    margin-left: -50px;
-}
-
-.upper-cards input[type=submit]:hover {
-    background: var(--deep);
-    color: var(--background);
-}
-
-.showtime-results {
-    display: flex;
-    flex-direction: row;
-} */
 
 .rental-card {
     display: flex;
@@ -390,11 +370,11 @@ input[type=text]:hover {
     border-radius: 20px;
 }
 
-.poster .caption {
+/* .poster .caption {
     text-align: center;
     color: var(--dark);
     font-size: 20px;
-}
+} */
 
 .poster img {
     border-radius: 20px;
@@ -410,11 +390,16 @@ input[type=text]:hover {
     padding: 20px;
     border-radius: 20px;
     justify-content: space-evenly;
-    max-width: 75%;
+    min-width: 75%;
+}
+
+.media-name {
+    font-size: 30px;
+    border-bottom: 2px solid var(--dark);
 }
 
 .synopsis {
-    padding: 20px;
+    padding: 18px;
     font-size: 24px;
 }
 
@@ -503,6 +488,13 @@ footer img {
     .recent-movies-card,
     .recent-tv-card { 
         width: 100%;
+    }
+
+    .streaming-card,
+    .rental-card,
+    .stats-card {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 720px) {
@@ -529,6 +521,12 @@ footer img {
         margin-top: 20px;
     }
 
+    .streaming-card,
+    .rental-card,
+    .stats-card {
+        width: 100%;
+    }
+
 }
 
 @media screen and (max-width: 580px) {
@@ -547,6 +545,8 @@ footer img {
     .rating-card,
     .box-office-card {
         border: none;
+        width: 100%;
+        padding: 0;
     }
 
     header .form {
@@ -572,9 +572,15 @@ footer img {
     }
 
     .recent-movies-card,
-.recent-tv-card { 
-    width: 100%;
-    margin: 0;
-    margin-top: 20px;
-}
+    .recent-tv-card { 
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .streaming-card,
+    .rental-card,
+    .stats-card {
+        width: 100%;
+    }
 }
