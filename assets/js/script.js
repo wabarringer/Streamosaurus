@@ -142,76 +142,8 @@ function nameSearch(event) {
 }
 goBtn.on("click", nameSearch);
 
-//Fetch Trending Movies or tv -----------------------------------------------------------------
 
-function gettrendingAPI() {
-  var requestTrendingURL =
-    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
-
-  fetch(requestTrendingURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-      var top5 = data.results;
-    }); //returns 20 pages; could do results 1-5
-}
-gettrendingAPI();
-
-//Fetches movie by ID to see watch providers ---------------------------------------------------
-function watchproviders() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestprovider =
-    "https://api.themoviedb.org/3/movie/12/watch/providers?api_key=" +
-    APIKeyTMDB;
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-watchproviders();
-
-//Fetch Recent movies for movie list on front page-----------------------------------------------
-function recentmovies() {
-  var requestrecent =
-    "https://api.themoviedb.org/3/movie/latest?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US";
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-
-function moviereviews() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestreviews =
-    "https://api.themoviedb.org/3/movie/12/reviews?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US&page=1";
-  fetch(requestreviews)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-moviereviews(); //returns reviews by folks on the TMDB site
-//if results=none, display text = unable to stream this movie, option to input zip code for Theater
-
-//What do do when the movie has multiple results?
-
-//from movie info available: poster_path, original_language, overview, release_date, vote_average
+//--------------------------------------------
 
 // mediaType: movie, tv, person
 // mediaTypeId: is the id of the media type above
@@ -440,20 +372,7 @@ function playingshows() {
 }
 playingshows();
 
-//------------------trending movie images --------------------------------------
-function trendingposter() {
-  var trendingmov =
-    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + APIKeyTMDB; //all includes people, movie and tv
 
-  fetch(trendingmov)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
-trendingposter();
 //------------------JS for Movie and TV Modals-----------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Functions to open and close a modal
