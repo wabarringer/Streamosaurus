@@ -219,8 +219,9 @@ function displayDetailsInSecondPage(data) {
       "https://www.themoviedb.org/t/p/w500" + firstResult.poster_path
     );
   $(".searched-display").find(".synopsis").text(firstResult.overview);
-  $(".searched-display").find(".caption").text(firstResult.vote_average);
+  //$(".searched-display").find(".caption").text(firstResult.vote_average);
   $(".searched-display").find("#box-office").text(firstResult.release_date);
+  $(".searched-display").find("#rating").text(firstResult.vote_average);
   console.log("hello world", firstResult);
   getCredits(firstResult.media_type, firstResult.id);
   $(".searched-display")
