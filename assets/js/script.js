@@ -506,8 +506,8 @@ fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key='+N
 var reviewlink = result.link.url
 var reviewlinkhref= $('#review-link')
 console.log(reviewlink)
-reviewlinkhref.href = reviewlink
-// console.log(reviewcontent.a.hr)
+
+document.querySelector("#review-link").innerHTML = '<a href="'+reviewlink+ '">Read the New York Times Review</a>'
 })
 }
 NYTreviews()
