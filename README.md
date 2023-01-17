@@ -41,7 +41,7 @@ A web site tool that allows you to find where your a specific movie or tv show i
 
 - Claire Eberle / https://github.com/ClaireEberle
 - Emma Waltho / https://github.com/ewaltho
-- Zazille Gomez / https://github.com/zazgh
+- Zazil Gomez / https://github.com/zazgh
 - Andy Barringer / https://github.com/wabarringer
 
 ### We used APIs from the following sources:
