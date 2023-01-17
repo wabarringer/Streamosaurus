@@ -159,59 +159,8 @@ function gettrendingAPI() {
 }
 gettrendingAPI();
 
-//Fetches movie by ID to see watch providers ---------------------------------------------------
-function watchproviders() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestprovider =
-    "https://api.themoviedb.org/3/movie/12/watch/providers?api_key=" +
-    APIKeyTMDB;
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-watchproviders();
 
-//Fetch Recent movies for movie list on front page-----------------------------------------------
-function recentmovies() {
-  var requestrecent =
-    "https://api.themoviedb.org/3/movie/latest?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US";
-  fetch(requestprovider)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-
-function moviereviews() {
-  //get movie id from movie data
-  // var movieID = storedID
-  var requestreviews =
-    "https://api.themoviedb.org/3/movie/12/reviews?api_key=" +
-    APIKeyTMDB +
-    "&language=en-US&page=1";
-  fetch(requestreviews)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //console.log(data);
-    });
-}
-moviereviews(); //returns reviews by folks on the TMDB site
-//if results=none, display text = unable to stream this movie, option to input zip code for Theater
-
-//What do do when the movie has multiple results?
-
-//from movie info available: poster_path, original_language, overview, release_date, vote_average
+//--------------------------------------------
 
 // mediaType: movie, tv, person
 // mediaTypeId: is the id of the media type above
