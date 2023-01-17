@@ -495,10 +495,11 @@ function NYTreviews() {
     })
     .then(function (data) {
       console.log(data);
-
-      var result = data.results[Math.floor(Math.random() * 20)];
+for (i=0;i<5;i++){
+      var result = data.results[i][Math.floor(Math.random() * 20)];
       console.log(result);
-      var randomreviewTitle = result.display_title;
+      
+      var randomreviewTitle = data.results[0].display_title;
       console.log(randomreviewTitle);
       $("#movie-review-title").text(randomreviewTitle);
       var randomreviewheadline = result.headline;
@@ -509,6 +510,8 @@ function NYTreviews() {
       console.log(reviewlink);
       reviewlinkhref.href = reviewlink;
       // console.log(reviewcontent.a.hr)
+      document.querySelector("#review-link").innerHTML = '<a target=_blank href="'+reviewlink+ '">Read the New York Times Review</a>'
+}
     });
 }
 NYTreviews();
