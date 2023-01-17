@@ -343,6 +343,7 @@ function theatermovies() {
         theaterlistlink.attr('id', 'tl'+[i])
         // intheatersEl.text(playingmovies);
         playingnow.append(intheatersEl);
+
       }
     });
 }
@@ -494,7 +495,7 @@ fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key='+N
 })
 .then(function(data) {
   console.log(data);
-
+for (i=0; i<5; i++)
     var result = data.results[Math.floor(Math.random()*20)]
     console.log(result)
   var randomreviewTitle = result.display_title
@@ -507,7 +508,7 @@ var reviewlink = result.link.url
 var reviewlinkhref= $('#review-link')
 console.log(reviewlink)
 
-document.querySelector("#review-link").innerHTML = '<a href="'+reviewlink+ '">Read the New York Times Review</a>'
+document.querySelector("#review-link").innerHTML = '<a target=_blank href="'+reviewlink+ '">Read the New York Times Review</a>'
 })
 }
 NYTreviews()
