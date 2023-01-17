@@ -494,6 +494,20 @@ fetch('https://api.nytimes.com/svc/movies/v2/reviews/all.json?query=&api-key='+N
 })
 .then(function(data) {
   console.log(data);
+
+    var result = data.results[Math.floor(Math.random()*20)]
+    console.log(result)
+  var randomreviewTitle = result.display_title
+  console.log(randomreviewTitle)
+  $('#movie-review-title').text(randomreviewTitle)
+  var randomreviewheadline = result.headline
+  console.log(randomreviewheadline)
+  $('#movie-review-headline').text(randomreviewheadline)
+var reviewlink = result.link.url
+var reviewlinkhref= $('#review-link')
+console.log(reviewlink)
+reviewlinkhref.href = reviewlink
+// console.log(reviewcontent.a.hr)
 })
 }
 NYTreviews()
